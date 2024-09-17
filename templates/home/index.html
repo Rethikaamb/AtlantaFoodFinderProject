@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <link rel="stylesheet" href="">
+    <title>Home</title>
+</head>
+<body>
+    {%  for message in messages %}
+    <div class="alert alert-{{ message.tages }} alert-dismissable fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    <h3>Welcome to the website (placeholder)</h3>
+    
+    {% if user.is_authenticated %}
+    <h3> Hello, {{ fname }}</h3>
+    <h4>You are successfully logged in.</h4>
+    <button type="submit"><a href="/logout">Log Out</a></button>
+    
+    {% else %}
+    <button type="submit"> <a href="/signup">Sign Up</a></button>
+    <button type="submit"><a href="/login">Log In</a></button>
+    {% endif %}
+    
+</body>
+</html>
