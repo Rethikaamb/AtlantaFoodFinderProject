@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, user_logged_in
 from django.contrib.auth import login as log_in
 from django.contrib.auth import logout as log_out
 from django.shortcuts import render, redirect
@@ -11,7 +11,7 @@ from django.conf import settings
 
 # Create your views here.
 def home(request):
-    if User.is_authenticated:
+    if User.is_authenticated and not User.is_active:
         return redirect('map/')
     return render(request, "home/index.html")
 
@@ -81,6 +81,7 @@ def login(request):
 def logout(request):
     log_out(request)
     messages.success(request, "Logged out successfully")
+    user = authenticate(request, username="false", password="false")
     return redirect('home')
 
 def map_view(request):
