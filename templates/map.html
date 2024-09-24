@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Google Maps Integration</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}"></script>
+    <script type="text/javascript">
+        function initMap() {
+            var location = {lat: 33.7833, lng: -84.3831};  // Example coordinates
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+</head>
+<body onload="initMap()">
+    <h1>My Google Map</h1>
+    <div id="map" style="height: 400px; width: 100%;"></div>
+</body>
+</html>

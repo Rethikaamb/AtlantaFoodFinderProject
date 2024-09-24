@@ -1,0 +1,118 @@
+/* General Page Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFF6E5;
+    background-image: url("images/imageone23400.png");
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: .4% 100%; /* Moves the image 10% from the left and 30% from the top */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h3, h4 {
+    color: #333;
+    text-align: center;
+
+}
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    background-color: #f44336; /* Red background for alerts */
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.alert strong {
+    font-weight: bold;
+}
+
+.alert button.close {
+    background: none;
+    border: none;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color:black; /* Bootstrap-like primary color */
+    color: black;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Centering the form content */
+.container {
+    background:#8C4B3C;
+    background-overlay: 50%;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+
+}
+
+
+h3.welcome {
+    margin-bottom: 20px;
+    font-size: 24px;
+    position: relative;
+    top: -20px; /* Move it up a bit */
+}
+
+/* Specific button styles */
+button.signup {
+    background-color: #28a745; /* Green color for Sign Up */
+}
+
+button.login {
+    background-color: #007bff; /* Blue color for Log In */
+}
+
+button.logout {
+    background-color: #dc3545; /* Red color for Log Out */
+}
+
+/* Responsive design for mobile screens */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+}
