@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
 </head>
 <body>
-    <div> 
+    <div class = "login-box">
         <h3>Log in here (placeholder)</h3>
         <form action="/login" method="post">
             {% csrf_token %}

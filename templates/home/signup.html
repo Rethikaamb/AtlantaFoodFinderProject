@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name = "viewport" content="width-device-width, initial-scale=1.0">
-    <link rel = 'stylesheet' href="./signup.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
     <title>Atlanta Food Finder - SIGN UP</title>
 </head>
 <body>
-    <div class="signup-box"> 
+    <div class="signup-box">
         <h3>Sign Up Here</h3>
         <form action="/signup" method="post">
             {% csrf_token %}
