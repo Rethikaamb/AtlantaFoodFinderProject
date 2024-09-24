@@ -12,7 +12,7 @@ from django.conf import settings
 # Create your views here.
 def home(request):
     if User.is_authenticated:
-        return render(request, "map.html")
+        return redirect('map/')
     return render(request, "home/index.html")
 
 def signup(request):
