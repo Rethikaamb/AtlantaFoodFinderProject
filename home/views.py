@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from AtlantaFoodFinder import settings
 from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -79,3 +80,6 @@ def logout(request):
     log_out(request)
     messages.success(request, "Logged out successfully")
     return redirect('home')
+
+def map_view(request):
+    return render(request, 'map.html', {'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY})
