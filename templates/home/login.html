@@ -5,16 +5,18 @@
     <title>Login</title>
 </head>
 <body>
-    <h3>Log in here (placeholder)</h3>
-    <form action="/login" method="post">
-        {% csrf_token %}
-        <label for="">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" Required>
-        <br>
-        <label for="">Password</label>
-        <input type="password" id="pass1" name="pass1" placeholder="Enter your password" Required>
-        <br>
-        <button type="submit">Log In</button>
-    </form>
+    <div> 
+        <h3>Log in here (placeholder)</h3>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" Required>
+            <br>
+            <label for="">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Enter your password" Required>
+            <br>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
 </body>
 </html>
