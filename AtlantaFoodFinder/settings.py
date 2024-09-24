@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from . info import *
+from .info import *
 import os
 
 #Google Maps API
@@ -139,5 +139,4 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 
 ]
-
 
