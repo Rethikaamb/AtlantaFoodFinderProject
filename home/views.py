@@ -11,6 +11,8 @@ from django.conf import settings
 
 # Create your views here.
 def home(request):
+    if User.is_authenticated:
+        return redirect('map/')
     return render(request, "home/index.html")
 
 def signup(request):
@@ -69,7 +71,7 @@ def login(request):
         if user is not None:
             log_in(request, user)
             fname = user.first_name
-            return render(request, "home/index.html", {'fname': fname})
+            return render(request, "map.html", {'fname': fname})
         else:
             messages.error(request, "Invalid username or password")
             return redirect('home')
