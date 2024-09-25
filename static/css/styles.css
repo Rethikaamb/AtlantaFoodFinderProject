@@ -3,14 +3,12 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #FFF6E5;
 
-    /* Add two background images, separated by a comma */
     background-image:
         url("images/imageone23400.png"),
         url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
 
-    /* Define background properties for both images */
-    background-size: contain, contain; /* Adjust sizing for each image */
-    background-attachment: fixed, scroll; /* Fix the first image, allow the second to scroll */
+    background-size: auto 100%, auto 100%; /* Adjust the height based on viewport, width auto */
+    background-attachment: fixed, fixed; /* Fix the first image, allow the second to scroll */
     background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
     background-position: .4% 100%, 99.4% 100%; /* Set positions for each image */
 
@@ -81,7 +79,7 @@ button a {
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #4D1F1A; /* Darker shade on hover */
 }
 
 /* Centering the form content */
