@@ -1,114 +1,134 @@
+/* General Page Styles */
 body {
-    background-color: #FFF6E5;
-    font-family: 'Roboto', sans-serif;
-}
-.signup-box {
-    width: 360px;
-    height: auto;
-    margin: auto;
-    margin-top: 30px;
-    background-color: #8C4B3C;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    border-color: 2px solid #4D1F1A;
-    padding: 20px;
-    color: #ffffff;
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack items vertically */
+    font-family: "Courier New"; /* Font family for body text */
+    background-color: #FFF6E5; /* Light background color */
+    background-image:
+        url("images/imageone23400.png"),
+        url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
+    background-size: auto 130%, auto 120%; /* Adjust the height based on viewport, width auto */
+    background-attachment: fixed, fixed; /* Fix the first image, allow the second to scroll */
+    background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
+    background-position: .4% 100%, 100% 0%; /* Set positions for each image */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.forgotpass-box {
-    width: 360px;
-    height: 620px;
-    margin: auto;
-    margin-top: 30px;
-    background-color: #8C4B3C;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    border-color: #4D1F1A;
-    padding: 20px;
-    color: #ffffff;
-}
+/* Box Styles */
+.signup-box,
+.forgotpass-box,
 .login-box {
-    width: 360px;
-    height: 280px;
-    margin: auto;
-    margin-top: 30px;
-    background-color: #FFF6E5;
-    border-radius: 3px;
+    width: 360px; /* Fixed width for all boxes */
+    margin: auto; /* Center boxes */
+    border-radius: 6px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #ffffff; /* Text color */
+    opacity: 95%; /* Opacity */
+    padding: 20px; /* Padding inside the boxes */
+    background-color: #8C4B3C; /* Background color for boxes */
+    border: 15px solid #4D1F1A; /* Darker border color */
 }
 
+/* Specific Box Heights */
+.forgotpass-box {
+    height: 620px; /* Height for the forgot password box */
+}
+
+.login-box {
+    height: 280px; /* Height for the login box */
+}
+
+/* Heading Styles */
 h3 {
-    text-align: center;
-    padding-top: 15px;
+    text-align: center; /* Center align */
+    padding-top: 15px; /* Padding at the top */
+    font-family: "Courier New"; /* Consistent font family */
+    color: #FFF6E5; /* Color for headings */
+    font-weight: normal; /* Normal weight for headings */
+}
 
-}
 h4 {
-    text-align: center;
+    text-align: center; /* Center align */
+    font-family: "Courier New"; /* Consistent font family */
 }
+
+/* Form Styles */
 form {
-    width: 300px;
-    margin-left: 20px;
+    width: 300px; /* Width of the form */
+    margin-left: 20px; /* Margin on the left */
 }
 
 form label {
-    display: flex;
-    margin-top: 20px;
-    font-size: 18px;
+    display: flex; /* Flex display for labels */
+    margin-top: 20px; /* Margin above labels */
+    font-size: 18px; /* Font size for labels */
+    color: #FFF6E5; /* Label color */
+    font-family: "Courier New"; /* Consistent font family */
 }
 
 form input {
-    width: 100%;
-    padding: 7px;
-    border: none;
-    border: 1px #F0E7D7;
-    border-radius: 6px;
-    outline: none;
+    width: 100%; /* Full width for inputs */
+    padding: 7px; /* Padding for inputs */
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 6px; /* Rounded corners */
+    outline: none; /* Remove outline */
+    background-color: #FFF6E5; /* Background color for input */
+    opacity: 80%; /* Make input slightly transparent */
 }
 
-inout[type="button"] {
-    width: 320px;
-    height: 35px;
-    margin-top: 20px;
-    border: none;
-    background-color: #4D1F1A;
-    color: #ffffff;
-    font-size: 18px;
+/* Button Styles */
+input[type="button"],
+.login-button,
+.gradient-button {
+    width: 100%; /* Full width for buttons */
+    height: 45px; /* Height for buttons */
+    margin-top: 20px; /* Space above buttons */
+    border-radius: 8px;         /* Rounded corners */
+    border: none; /* No border */
+    color: #ffffff; /* Text color */
+    font-size: 18px; /* Font size for buttons */
+    cursor: pointer; /* Pointer cursor */
+    text-transform: uppercase; /* Uppercase text */
+    background: linear-gradient(90deg, #4D1F1A, #7A4A45); /* Gradient background */
+    background-size: 200% 100%; /* Background size for the gradient effect */
+    transition: background-position 0.3s ease; /* Transition effect */
 }
 
+/* Gradient Button Hover Effect */
+input[type="button"]:hover,
+.login-button:hover,
+.gradient-button:hover {
+    background-position: 100% 0; /* Shift the gradient on hover */
+}
+
+/* Paragraph Styles */
 p {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 15px;
+    text-align: center; /* Center align */
+    padding-top: 20px; /* Padding above */
+    font-size: 15px; /* Font size */
+}
+
+.para-2,
+.para-3 {
+    text-align: center; /* Center align */
+    font-size: 15px; /* Font size */
+    margin-top: -10px; /* Negative margin for adjustment */
 }
 
 .para-2 {
-    text-align: center;
-    color: #ffffff;
-    font-size: 15px;
-    margin-top: -10px
+    color: #ffffff; /* White text */
 }
 
 .para-3 {
-    text-align: center;
-    color: #000000;
-    font-size: 15px;
-    margin-top: -10px
+    color: #000000; /* Black text */
 }
 
-.gradient-button {
-    background: linear-gradient(90deg, #4D1F1A, #7A4A45);
-    background-size: 200% 100%;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 15px 30px;
-    text-transform: uppercase;
-    transition: background-position 0.5s ease;
-}
-
-.gradient-button:hover {
-    background-position: 100% 0; /* Shift the gradient on hover */
+/* Responsive design for mobile screens */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 20px; /* Padding for small screens */
+    }
 }

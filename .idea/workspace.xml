@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="forgotpassword user story">
-      <change afterPath="$PROJECT_DIR$/templates/home/carousel_styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/scrollingCarousel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/scrollingCarousel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/carousel_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/carousel_styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +29,15 @@
       </list>
     </option>
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/enya" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="enya" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -59,7 +67,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "Merging enya",
+    "git-widget-placeholder": "vaishnavi",
     "last_opened_file_path": "C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
