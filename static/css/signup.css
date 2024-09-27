@@ -12,7 +12,16 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
     border-color: #4D1F1A;
 }
-
+.forgotpass-box {
+    width: 360px;
+    height: 620px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #8C4B3C;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    border-color: #4D1F1A;
+}
 .login-box {
     width: 360px;
     height: 280px;
@@ -69,6 +78,13 @@ p {
 .para-2 {
     text-align: center;
     color: #ffffff;
+    font-size: 15px;
+    margin-top: -10px
+}
+
+.para-3 {
+    text-align: center;
+    color: #000000;
     font-size: 15px;
     margin-top: -10px
 }
