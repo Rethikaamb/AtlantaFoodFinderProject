@@ -91,11 +91,11 @@ def map_view(request):
 
 def forgotpassword(request):
     if request.method == 'POST':
-        username = request.POST.get('username')  # Get username from the form
-        new_pass1 = request.POST.get('pass1')  # New password
-        new_pass2 = request.POST.get('pass2')  # Confirm new password
+        username = request.POST.get('username')
+        new_pass1 = request.POST.get('pass1')
+        new_pass2 = request.POST.get('pass2')
 
-        if username and new_pass1 and new_pass2:  # Ensure all fields are filled
+        if username and new_pass1 and new_pass2:  #all fields filled in
             try:
                 user = User.objects.get(username=username)
 
@@ -113,6 +113,6 @@ def forgotpassword(request):
                 messages.error(request, "User does not exist.")
         else:
             messages.error(request, "All fields are required.")
-    return render(request, 'forgotpassword.html')
+    return render(request, 'home/forgotpassword.html')
 
 

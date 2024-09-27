@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="signup enhancements">
-      <change afterPath="$PROJECT_DIR$/templates/home/forgotpassword.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="forgotpassword user story">
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +93,7 @@
       <workItem from="1726586821983" duration="5067000" />
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727214849959" duration="168000" />
-      <workItem from="1727289985784" duration="5463000" />
+      <workItem from="1727289985784" duration="5577000" />
     </task>
     <task id="LOCAL-00001" summary="signup enhancements">
       <option name="closed" value="true" />
@@ -117,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727291522073</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="forgotpassword user story">
+      <option name="closed" value="true" />
+      <created>1727396335551</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727396335551</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +138,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="signup enhancements" />
-    <option name="LAST_COMMIT_MESSAGE" value="signup enhancements" />
+    <MESSAGE value="forgotpassword user story" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgotpassword user story" />
   </component>
 </project>
