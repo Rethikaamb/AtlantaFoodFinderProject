@@ -4,14 +4,19 @@ body {
 }
 .signup-box {
     width: 360px;
-    height: 620px;
+    height: auto;
     margin: auto;
     margin-top: 30px;
     background-color: #8C4B3C;
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    border-color: #4D1F1A;
+    border-color: 2px solid #4D1F1A;
+    padding: 20px;
+    color: #ffffff;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
 }
+
 .forgotpass-box {
     width: 360px;
     height: 620px;
@@ -21,6 +26,8 @@ body {
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
     border-color: #4D1F1A;
+    padding: 20px;
+    color: #ffffff;
 }
 .login-box {
     width: 360px;
