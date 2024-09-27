@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def home(request):
@@ -116,3 +117,6 @@ def forgotpassword(request):
     return render(request, 'home/forgotpassword.html')
 
 
+def account(request):
+    user = get_object_or_404(User, username=User)
+    return render(request, 'account.html', {'username': User})

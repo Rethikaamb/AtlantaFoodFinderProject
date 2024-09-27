@@ -1,0 +1,17 @@
+        .account-button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .account-button {
+            padding: 10px 15px;
+            background-color: #8C4B3C;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .account-button:hover {
+            background-color: #4D1F1A;
+        }

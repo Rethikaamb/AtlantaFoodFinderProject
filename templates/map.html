@@ -3,6 +3,8 @@
 <head>
     <title>Google Maps Integration</title>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}">
     <script type="text/javascript">
         function initMap() {
             var location = {lat: 33.7833, lng: -84.3831};  // Example coordinates
@@ -19,6 +21,10 @@
 </head>
 <body onload="initMap()">
     <h1>My Google Map</h1>
+{#    adding button to access account page#}
+        <div class="account-button-container"> 
+        <a href="{% url 'account' %}" class="account-button">View my Account</a>
+    </div>
     <div id="map" style="height: 400px; width: 100%;"></div>
 <h3> Hello, {{ fname }}</h3>
         <h4>You are successfully logged in.</h4>
