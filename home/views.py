@@ -8,6 +8,8 @@ from django.contrib import messages
 from AtlantaFoodFinder import settings
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 def home(request):
@@ -86,3 +88,31 @@ def logout(request):
 
 def map_view(request):
     return render(request, 'map.html', {'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY})
+
+def forgotpassword(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        new_pass1 = request.POST.get('pass1')
+        new_pass2 = request.POST.get('pass2')
+
+        if username and new_pass1 and new_pass2:  #all fields filled in
+            try:
+                user = User.objects.get(username=username)
+
+                # Check if new pass is the same as old
+                if check_password(new_pass1, user.password):
+                    messages.error(request, "New password cannot be the same as the old password.")
+                elif new_pass1 == new_pass2:
+                    user.password = make_password(new_pass1)
+                    user.save()
+                    messages.success(request, "Sucess! You will get redirected shortly.")
+                    return redirect('login')
+                else:
+                    messages.error(request, "Passwords do not match.")
+            except User.DoesNotExist:
+                messages.error(request, "User does not exist.")
+        else:
+            messages.error(request, "All fields are required.")
+    return render(request, 'home/forgotpassword.html')
+
+

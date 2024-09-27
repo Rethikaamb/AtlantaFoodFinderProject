@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Atl Food - Sign Up</title>
+    <meta name = "viewport" content="width-device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+    <title>Atlanta Food Finder - SIGN UP</title>
 </head>
 <body>
-    <h3>Sign up here (placeholder)</h3>
-    <form action="/signup" method="post">
-        {% csrf_token %}
-        <label for="">Username</label>
-        <input type="text" id="username" name="username" placeholder="Create a username (letters & numbers only)" Required>
-        <br>
-        <label for="">First Name</label>
-        <input type="text" id="fname" name="fname" placeholder="Enter your first name" Required>
-        <br>
-        <label for="">Last Name</label>
-        <input type="text" id="lname" name="lname" placeholder="Enter your last name" Required>
-        <br>
-        <label for="">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Enter a valid email address" Required>
-        <br>
-        <label for="">Password</label>
-        <input type="password" id="pass1" name="pass1" placeholder="Select a password" Required>
-        <br>
-        <label for="">Confirm Password</label>
-        <input type="password" id="pass2" name="pass2" placeholder="Re-enter your password" Required>
-        <br>
-        <button type="submit">Sign Up</button>
-    </form>
+    <div class="signup-box">
+        <h3>Sign Up Here</h3>
+        <form action="/signup" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" id="username" name="username" placeholder="Create a Username (Letters & Numbers Only)" Required>
+            <br>
+            <label for="">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" Required>
+            <br>
+            <label for="">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
+            <br>
+            <label for="">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter a Valid Email Address" Required>
+            <br>
+            <label for="">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Select a Password" Required>
+            <br>
+            <label for="">Confirm Password</label>
+            <input type="password" id="pass2" name="pass2" placeholder="Re-enter Your Password" Required>
+            <br>
+            <br>
+            <button class="gradient-button" type="submit">Sign Up</button>
+        </form>
+        <p>By Clicking the Sign Up Button, you agree to our <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms and Conditions.</a></p>
+    <p>Already have an account? <a href= "{% url 'login' %}">Login Here</a></p>
+    </div>
 </body>
 </html>
