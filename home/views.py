@@ -118,5 +118,4 @@ def forgotpassword(request):
 
 
 def account(request):
-    user = get_object_or_404(User, username=User)
-    return render(request, 'account.html', {'username': User})
+    return render(request, 'account.html')
