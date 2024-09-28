@@ -21,6 +21,7 @@ def home(request):
         return redirect('map/')
     return render(request, "home/index.html")
 
+
 def signup(request):
     if request.method == "POST":
         username = request.POST['username']
