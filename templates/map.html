@@ -82,6 +82,17 @@
            } else {
                handleLocationError(false, infoWindow, map.getCenter());
            }
+           
+           {% if search_results %}
+                var places = {{ search_results|safe }};
+                places.forEach(function(place) {
+                    var marker = new google.maps.Marker({
+                        position: {lat: place.geometry.location.lat, lng: place.geometry.location.lng},
+                        map: map,
+                        title:place.name
+                    });
+            });
+            {% endif %}
        }
       
        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -148,5 +159,22 @@
            </button>
        </div>
    </div>
+
+<!-- Search Form -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+<!-- Search Results -->
+<ul>
+    {% if search_results %}
+        <h2>Search Results:</h2>
+        {% for result in search_results %}
+            <li>{{ result.name }} - {{ result.formatted_address }}</li>
+        {% endfor %}
+    {% endif %}
+</ul>
 </body>
 </html>

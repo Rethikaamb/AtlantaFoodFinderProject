@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
 </head>
 <body>
-    <h3>Log in here (placeholder)</h3>
-    <form action="/login" method="post">
-        {% csrf_token %}
-        <label for="">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" Required>
-        <br>
-        <label for="">Password</label>
-        <input type="password" id="pass1" name="pass1" placeholder="Enter your password" Required>
-        <br>
-        <button type="submit">Log In</button>
-    </form>
+    <div class = "login-box">
+        <h3>Welcome! Please Login</h3>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" Required>
+            <br>
+            <label for="">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Enter your password" Required>
+            <br>
+            <button type="submit">Log In</button>
+        </form>
+        <p class="para-3">New Here? <a href="{% url "signup" %}">Register Today!</a></p>
+        <p class="para-2"><a href= "{% url "forgotpassword" %}" >Forgot Password?</a></p>
+    </div>
 </body>
 </html>
