@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate
+import requests
+from django.contrib.auth import authenticate, user_logged_in
 from django.contrib.auth import login as log_in
 from django.contrib.auth import logout as log_out
 from django.shortcuts import render, redirect
@@ -7,10 +8,19 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from AtlantaFoodFinder import settings
 from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
+
+from home.forms import RestaurantSearchForm
+
 
 # Create your views here.
 def home(request):
+    if User.is_authenticated and not User.is_active:
+        return redirect('map/')
     return render(request, "home/index.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -68,7 +78,7 @@ def login(request):
         if user is not None:
             log_in(request, user)
             fname = user.first_name
-            return render(request, "home/index.html", {'fname': fname})
+            return redirect('map/')
         else:
             messages.error(request, "Invalid username or password")
             return redirect('home')
@@ -78,4 +88,51 @@ def login(request):
 def logout(request):
     log_out(request)
     messages.success(request, "Logged out successfully")
+    user = authenticate(request, username="false", password="false")
     return redirect('home')
+
+def map_view(request):
+    search_results = []
+    form = RestaurantSearchForm()
+
+    if request.method == "POST":
+        form = RestaurantSearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            api_key = settings.GOOGLE_MAPS_API_KEY
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&key={api_key}"
+            response = requests.get(url)
+            search_results = response.json().get('results',[])
+    return render(request, 'map.html', {
+        'form': form,
+        'search_results': search_results,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+    })
+
+def forgotpassword(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        new_pass1 = request.POST.get('pass1')
+        new_pass2 = request.POST.get('pass2')
+
+        if username and new_pass1 and new_pass2:  #all fields filled in
+            try:
+                user = User.objects.get(username=username)
+
+                # Check if new pass is the same as old
+                if check_password(new_pass1, user.password):
+                    messages.error(request, "New password cannot be the same as the old password.")
+                elif new_pass1 == new_pass2:
+                    user.password = make_password(new_pass1)
+                    user.save()
+                    messages.success(request, "Sucess! You will get redirected shortly.")
+                    return redirect('login')
+                else:
+                    messages.error(request, "Passwords do not match.")
+            except User.DoesNotExist:
+                messages.error(request, "User does not exist.")
+        else:
+            messages.error(request, "All fields are required.")
+    return render(request, 'home/forgotpassword.html')
+
+

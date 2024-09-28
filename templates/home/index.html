@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <link rel="stylesheet" href="">
+
+    <!-- Load static files and CSS -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
     <title>Home</title>
 </head>
 <body>
-    {%  for message in messages %}
-    <div class="alert alert-{{ message.tages }} alert-dismissable fade show" role="alert">
-        <strong>Message: </strong> {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="container">
+        <h3 class="welcome">Welcome to AtlantaEats</h3>
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissable fade show" role="alert">
+            <strong>Message: </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+        <h3>Hello, {{ user.username }}</h3>
+        <h4>You are successfully logged in.</h4>
+        <button class="logout"><a href="/logout">Log Out</a></button>
+
+        {% else %}
+        <!-- Login Form on the Main Page -->
+        <h3> </h3>
+        <form action="/login" method="post" class="login-form">  <!-- Added class for styling -->
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required class="login-input">  <!-- Added class -->
+            <br>
+            <label for="pass1">Password:</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Enter your password" required class="login-input">  <!-- Added class -->
+            <br>
+            <button type="submit" class="login-button">Log In</button>  <!-- Added class -->
+        </form>
+
+        <!-- Sign Up Button -->
+        <button class="signup-button"><a href="{% url 'signup' %}">Sign Up</a></button>
+        {% endif %}
     </div>
-    {% endfor %}
-    
-    <h3>Welcome to the website (placeholder)</h3>
-    
-    {% if user.is_authenticated %}
-    <h3> Hello, {{ fname }}</h3>
-    <h4>You are successfully logged in.</h4>
-    <button type="submit"><a href="/logout">Log Out</a></button>
-    
-    {% else %}
-    <button type="submit"> <a href="/signup">Sign Up</a></button>
-    <button type="submit"><a href="/login">Log In</a></button>
-    {% endif %}
-    
 </body>
 </html>
