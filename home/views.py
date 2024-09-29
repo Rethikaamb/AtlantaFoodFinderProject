@@ -52,8 +52,14 @@ def signup(request):
         if len(username) > 15:
             messages.error(request, "Username must be less than 15 characters")
 
+        if not len(username) > 5:
+            messages.error(request, "Username must be greater than 5 characters")
+
         if not len(pass1) > 5:
             messages.error(request, "Password must be greater than 5 characters")
+
+        if len(pass1) > 15:
+            messages.error(request, "Password must be less than 15 characters")
 
         if pass1 != pass2:
             messages.error(request, "Passwords must match")
