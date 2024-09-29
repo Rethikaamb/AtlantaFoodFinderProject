@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 
 from home.forms import RestaurantSearchForm
@@ -36,12 +38,22 @@ def signup(request):
             messages.error(request, "Username already taken")
             return redirect('home')
 
+        # Validate the email format
+        try:
+            validate_email(email)
+        except ValidationError:
+            messages.error(request, "Invalid email address.")
+            return redirect('home')
+
         if User.objects.filter(email=email):
             messages.error(request, "Email already associated with an account")
             return redirect('home')
 
         if len(username) > 15:
             messages.error(request, "Username must be less than 15 characters")
+
+        if not len(pass1) > 5:
+            messages.error(request, "Password must be greater than 5 characters")
 
         if pass1 != pass2:
             messages.error(request, "Passwords must match")
@@ -145,3 +157,4 @@ def forgotpassword(request):
 
 def account(request):
     return render(request, 'account.html')
+
