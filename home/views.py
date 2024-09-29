@@ -1,3 +1,4 @@
+import requests
 from django.contrib.auth import authenticate, user_logged_in
 from django.contrib.auth import login as log_in
 from django.contrib.auth import logout as log_out
@@ -11,11 +12,15 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 
+from home.forms import RestaurantSearchForm
+
+
 # Create your views here.
 def home(request):
     if User.is_authenticated and not User.is_active:
         return redirect('map/')
     return render(request, "home/index.html")
+
 
 def signup(request):
     if request.method == "POST":
@@ -73,7 +78,7 @@ def login(request):
         if user is not None:
             log_in(request, user)
             fname = user.first_name
-            return render(request, "map.html", {'fname': fname})
+            return redirect('map/')
         else:
             messages.error(request, "Invalid username or password")
             return redirect('home')
@@ -87,7 +92,22 @@ def logout(request):
     return redirect('home')
 
 def map_view(request):
-    return render(request, 'map.html', {'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY})
+    search_results = []
+    form = RestaurantSearchForm()
+
+    if request.method == "POST":
+        form = RestaurantSearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            api_key = settings.GOOGLE_MAPS_API_KEY
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&key={api_key}"
+            response = requests.get(url)
+            search_results = response.json().get('results',[])
+    return render(request, 'map.html', {
+        'form': form,
+        'search_results': search_results,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+    })
 
 def forgotpassword(request):
     if request.method == 'POST':
