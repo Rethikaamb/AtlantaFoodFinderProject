@@ -39,35 +39,27 @@ def signup(request):
             validate_email(email)
         except ValidationError:
             messages.error(request, "Invalid email address.")
-            return redirect('home')
 
         if User.objects.filter(username=username):
             messages.error(request, "Username already taken")
-            return redirect('home')
 
         elif User.objects.filter(email=email):
             messages.error(request, "Email already associated with an account")
-            return redirect('home')
 
         elif len(username) > 15 or len(username) < 5 :
             messages.error(request, "Username must be less than 15 characters and greater than 5")
-            return redirect('home')
 
         elif len(pass1) < 5 or len(pass1) > 15:
             messages.error(request, "Password must be greater than 5 characters and less than 15")
-            return redirect('home')
 
         elif pass1 != pass2:
             messages.error(request, "Passwords must match")
-            return redirect('home')
 
         elif not username.isalnum():
             messages.error(request, "Username must be alphanumeric")
-            return redirect('home')
 
         elif not pass1.isalnum():
             messages.error(request, "Password must be alphanumeric")
-            return redirect('home')
 
         else:
             # THE FOLLOWING EXISTS IN CASE WE EVER WANT TO SEND VERIFICATION/WELCOME EMAILS
