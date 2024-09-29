@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}">
    <title>Google Maps Integration</title>
    <style>
        /* Flex container to split the screen into two halves */
@@ -144,11 +146,12 @@
    </script>
 </head>
 <body onload="initMap()">
-   <div class="container">
+<!-- EP: button to go to profile -->
+<div class="account-button-container">
+    <a href="{% url 'account' %}" class="account-button">View my Profile</a>
+</div>
        <!-- Left side for Google Map -->
        <div id="map"></div>
-
-
        <!-- Right side for search or other content -->
        <div class="search-panel">
            <h1>Search for Restaurants</h1>
