@@ -15,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 /* Box Styles */
@@ -84,7 +85,8 @@ input[type="button"],
 .login-button,
 .gradient-button {
     width: 100%; /* Full width for buttons */
-    height: 45px; /* Height for buttons */
+    font-family: "Courier New";
+    height: 35px; /* Height for buttons */
     margin-top: 20px; /* Space above buttons */
     border-radius: 8px;         /* Rounded corners */
     border: none; /* No border */
@@ -95,6 +97,13 @@ input[type="button"],
     background: linear-gradient(90deg, #4D1F1A, #7A4A45); /* Gradient background */
     background-size: 200% 100%; /* Background size for the gradient effect */
     transition: background-position 0.3s ease; /* Transition effect */
+
+}
+
+
+/* Move the button to the left */
+.login-button {
+    margin-left: 0; /* No margin on the left */
 }
 
 /* Gradient Button Hover Effect */
@@ -107,7 +116,6 @@ input[type="button"]:hover,
 /* Paragraph Styles */
 p {
     text-align: center; /* Center align */
-    padding-top: 20px; /* Padding above */
     font-size: 15px; /* Font size */
 }
 
@@ -125,6 +133,39 @@ p {
 .para-3 {
     color: #000000; /* Black text */
 }
+
+.signup-button {
+    border: none;              /* No border */
+    background-color: #4D1F1A; /* Background color */
+    width: 75%;                /* Button width */
+    text-align: center;        /* Centered text */
+    text-decoration: none;     /* No underline */
+    display: inline-block;     /* Display as inline-block */
+    font-size: 16px;           /* Text size */
+    margin: 4px 9px;           /* Small margin */
+    cursor: pointer;           /* Pointer cursor on hover */
+    border-radius: 6px;        /* Rounded corners */
+    text-transform: uppercase; /* Uppercase text */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.signup-button:hover {
+    background-color: black; /* Darker shade on hover */
+}
+
+.signup-link {
+    display: block;         /* Make the anchor tag a block-level element */
+    width: 100%;            /* Full width */
+    height: 100%;           /* Full height */
+    color: white;           /* White text */
+    text-decoration: none;  /* No underline */
+    padding: 8px 0;         /* Padding to align text */
+    font-family: "Courier New", monospace; /* Font style */
+    text-align: center;     /* Center the text */
+}
+
+
+
 
 /* Responsive design for mobile screens */
 @media screen and (max-width: 600px) {

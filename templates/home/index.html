@@ -31,6 +31,7 @@
         {% else %}
         <!-- Login Form on the Main Page -->
         <h3> </h3>
+
         <form action="/login" method="post" class="login-form">  <!-- Added class for styling -->
             {% csrf_token %}
             <label for="username">Username:</label>
@@ -39,11 +40,14 @@
             <label for="pass1">Password:</label>
             <input type="password" id="pass1" name="pass1" placeholder="Enter your password" required class="login-input">  <!-- Added class -->
             <br>
+            <p class="para-2"><a href= "{% url "forgotpassword" %}" >Forgot Password?</a></p>
+
             <button type="submit" class="login-button">Log In</button>  <!-- Added class -->
         </form>
-
+            <h9>--------------------or-------------------</h9>
         <!-- Sign Up Button -->
         <button class="signup-button"><a href="{% url 'signup' %}">Sign Up</a></button>
+
         {% endif %}
     </div>
 </body>
