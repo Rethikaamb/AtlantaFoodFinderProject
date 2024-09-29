@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name = "viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
     <title>Atlanta Food Finder - SIGN UP</title>
@@ -16,28 +16,28 @@
         <form action="/signup" method="post">
             {% csrf_token %}
             <label for="">Username</label>
-            <input type="text" id="username" name="username" placeholder="Create a Username (Letters & Numbers Only)" Required>
+            <input type="text" id="username" name="username" placeholder="Create a Username (Letters & Numbers Only)" required>
             <br>
             <label for="">First Name</label>
-            <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" Required>
+            <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" required>
             <br>
             <label for="">Last Name</label>
-            <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
+            <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" required>
             <br>
             <label for="">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter a Valid Email Address" Required>
+            <input type="email" id="email" name="email" placeholder="Enter a Valid Email Address" required>
             <br>
             <label for="">Password</label>
-            <input type="password" id="pass1" name="pass1" placeholder="Select a Password" Required>
+            <input type="password" id="pass1" name="pass1" placeholder="Select a Password" required>
             <br>
             <label for="">Confirm Password</label>
-            <input type="password" id="pass2" name="pass2" placeholder="Re-enter Your Password" Required>
+            <input type="password" id="pass2" name="pass2" placeholder="Re-enter Your Password" required>
             <br>
             <br>
-            <button class="gradient-button" type="submit">Sign Up</button>
+            <button class="signup-button" type="submit">Sign Up</button> <!-- Updated button -->
         </form>
-        <p>By Clicking the Sign Up Button, you agree to our <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms and Conditions.</a></p>
-    <p>Already have an account? <a href= "{% url 'login' %}">Login Here</a></p>
+        <p>By Clicking the Sign Up Button, you agree to our <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Terms and Conditions.</a></p>
+        <p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
     </div>
 </body>
 </html>
