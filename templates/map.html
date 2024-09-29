@@ -21,8 +21,7 @@
            padding: 20px;
            background-color: #f4f4f4;
        }
-
-
+       
        /* Basic styling for the search panel content */
        .search-panel h3, .search-panel h4 {
            margin-top: 0;
@@ -75,7 +74,6 @@
                     userMarker.addListener('click', function() {
                     infoWindow.open(map, userMarker);
                     });
-
                   
                    fetchNearbyRestaurants(pos)
                }, function() {
@@ -100,7 +98,7 @@
        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
            infoWindow.setPosition(pos);
            infoWindow.setContent(browserHasGeolocation ?
-               'Error: The Geolocation service failed.' :
+               'Error: The Geolocation service failed. Make sure location services are not blocked.' :
                'Error: Your browser doesn\'t support geolocation.');
            infoWindow.open(map);
        }
