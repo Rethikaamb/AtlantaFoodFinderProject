@@ -5,69 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="changes to account style">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AtlantaFoodFinder.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d952e783-cbef-471e-b919-d6d9ec00557c.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d952e783-cbef-471e-b919-d6d9ec00557c/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_9_24_24,_2_35 PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_9_24_24__2_35PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate.csh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate.fish" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate.nu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/activate_this.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/django-admin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/pip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/pip-3.12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/pip3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/pip3.12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/python" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/python3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/python3.12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/bin/sqlformat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.venv/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/forms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/carousel_styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/images/imageone23400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/map.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/profile.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/signup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/account.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/carousel_styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/favorites.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/forgotpassword.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/scrollingCarousel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/signup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/signup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,24 +57,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.login.html.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "enya",
-    "last_opened_file_path": "C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;enya&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/AtlantaFoodFinderProject/templates/home/login.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -165,6 +105,7 @@
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727214849959" duration="168000" />
       <workItem from="1727289985784" duration="6942000" />
+      <workItem from="1727643002785" duration="891000" />
     </task>
     <task id="LOCAL-00001" summary="signup enhancements">
       <option name="closed" value="true" />
@@ -278,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727641270167</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="changes to account style">
+      <option name="closed" value="true" />
+      <created>1727643088779</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727643088779</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
