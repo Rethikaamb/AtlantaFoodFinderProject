@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="map html to add button to go to account page + add account function">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="map html p2 to add button to go to account page + add account function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +98,9 @@
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727214849959" duration="168000" />
       <workItem from="1727289985784" duration="9447000" />
-      <workItem from="1727448819393" duration="1377000" />
+      <workItem from="1727448819393" duration="4440000" />
+      <workItem from="1727484173641" duration="896000" />
+      <workItem from="1727548466226" duration="721000" />
     </task>
     <task id="LOCAL-00001" summary="signup enhancements">
       <option name="closed" value="true" />
@@ -181,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727449998809</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="map html p2 to add button to go to account page + add account function">
+      <option name="closed" value="true" />
+      <created>1727450427749</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727450427749</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +212,7 @@
     <MESSAGE value="forgotpassword user story" />
     <MESSAGE value="changes" />
     <MESSAGE value="map html to add button to go to account page + add account function" />
-    <option name="LAST_COMMIT_MESSAGE" value="map html to add button to go to account page + add account function" />
+    <MESSAGE value="map html p2 to add button to go to account page + add account function" />
+    <option name="LAST_COMMIT_MESSAGE" value="map html p2 to add button to go to account page + add account function" />
   </component>
 </project>
