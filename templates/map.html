@@ -111,7 +111,6 @@
                     for (var i = 0; i < results.length; i++) {
                         createMarker(results[i]);
                     }
-
                     // If there are more results, get them
                     if (pagination.hasNextPage) {
                         pagination.nextPage();
@@ -150,22 +149,108 @@
                        
                        // Set content for InfoWindow
                        var contentString = `
-                           <div>
-                               <h3>${name}</h3>
-                               <p><strong>Address:</strong> ${address}</p>
-                               <p><strong>Phone:</strong> ${phone}</p>
-                               <p><strong>Rating:</strong> ${rating} / 5</p>
-                               <p><strong>Cuisine:</strong> ${cuisine}</p>
-                               <p><a href="${website}" target="_blank">View on Google Maps</a></p>
-                           </div>
-                       `;
+                   <div>
+                       <h3>${name}</h3>
+                       <p><strong>Address:</strong> ${address}</p>
+                       <p><strong>Phone:</strong> ${phone}</p>
+                       <p><strong>Rating:</strong> ${rating} / 5</p>
+                       <p><strong>Cuisine:</strong> ${cuisine}</p>
+                       <p><a href="${website}" target="_blank">View on Google Maps</a></p>
+                       <button onclick="addFavorite('${place.place_id}')">Add to Favorites</button>
+                       <button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>
+                   </div>
+               `;
                        
                        infoWindow.setContent(contentString);
                        infoWindow.open(map, marker);
                    }
                });
            });
+
+// Utility to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
        }
+       let favorites = []
+       // Function to add a restaurant to favorites
+       function addFavorite(restaurantId) {
+           if (!favorites.includes(restaurantId)) {
+               favorites.push(restaurantId);
+               updateFavoritesUI(); // Update the UI to reflect the change
+               }
+           fetch('/api/favorites/add/', {
+               method: 'POST', 
+               headers: {
+                   'Content-Type': 'application/json', 
+                   'X-CSRFToken': getCookie('csrftoken')  // Ensure CSRF token is included
+                   }, 
+               body: JSON.stringify({ restaurant_id: restaurantId })
+           })
+               .then(response => response.json())
+               .then(data => {
+                   console.log(data.message);
+                   // Update UI to reflect the favorite status
+                   })
+               .catch(error => {
+                   console.error('Error adding favorite:', error);
+               });
+       }
+       // Function to remove a restaurant from favorites
+       function removeFavorite(restaurantId) {
+           favorites = favorites.filter(id => id !== restaurantId);
+           updateFavoritesUI(); // Update the UI to reflect the change
+           fetch(`/api/favorites/remove/${restaurantId}/`, {
+               method: 'DELETE', 
+               headers: {
+                   'X-CSRFToken': getCookie('csrftoken')  // Ensure CSRF token is included
+                   }
+           })
+               .then(response => response.json())
+               .then(data => {
+                   console.log(data.message);
+                   // Update UI to reflect the favorite status
+                   })
+               .catch(error => {
+                   console.error('Error removing favorite:', error);
+               });
+       }
+       
+       function updateFavoritesUI() {
+           const favoritesContainer = document.getElementById('favorites');
+           favoritesContainer.innerHTML = ''; // Clear previous favorites
+           
+           if (favorites.length === 0) {
+               favoritesContainer.innerHTML = '<p>No favorites added.</p>';
+               return;
+           }
+           favorites.forEach(id => {
+               const listItem = document.createElement('li');
+               listItem.textContent = `Restaurant ID: ${id}`; // You might want to fetch the restaurant details based on ID
+               favoritesContainer.appendChild(listItem);
+           });
+       }
+       
+       function loadFavorites() {
+           const savedFavorites = localStorage.getItem('favorites');
+           if (savedFavorites) {
+               favorites = JSON.parse(savedFavorites);
+               updateFavoritesUI(); // Update the UI on page load
+               }
+       }
+       
+       loadFavorites();
    </script>
 </head>
 <body onload="initMap()">
@@ -182,6 +267,12 @@
            <button type="submit" class="logout">
                <a href="/logout">Log Out</a>
            </button>
+           
+           <h2>Your Favorites:</h2>
+           <ul id="favorites">
+               <li>No favorites added.</li> <!-- This will be updated dynamically -->
+           </ul>
+           
        </div>
    </div>
 

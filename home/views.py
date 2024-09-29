@@ -14,6 +14,12 @@ from django.contrib.auth.hashers import check_password
 
 from home.forms import RestaurantSearchForm
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Favorite, Restaurant
+from .serializers import FavoriteSerializer, RestaurantSerializer
+
 
 # Create your views here.
 def home(request):
@@ -134,5 +140,60 @@ def forgotpassword(request):
         else:
             messages.error(request, "All fields are required.")
     return render(request, 'home/forgotpassword.html')
+
+# Add a restaurant to favorites
+@api_view(['POST'])
+def add_favorite(request):
+    user = request.user
+    restaurant_id = request.data.get('restaurant_id')
+
+    try:
+        restaurant = Restaurant.objects.get(id=restaurant_id)
+        favorite, created = Favorite.objects.get_or_create(user=user, restaurant=restaurant)
+        if created:
+            return Response({"message": "Restaurant added to favorites"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({"message": "Restaurant is already in favorites"}, status=status.HTTP_200_OK)
+    except Restaurant.DoesNotExist:
+        return Response({"error": "Restaurant does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+# Remove a restaurant from favorites
+@api_view(['DELETE'])
+def remove_favorite(request, restaurant_id):
+    user = request.user
+    try:
+        favorite = Favorite.objects.get(user=user, restaurant_id=restaurant_id)
+        favorite.delete()
+        return Response({"message": "Favorite removed"}, status=status.HTTP_200_OK)
+    except Favorite.DoesNotExist:
+        return Response({"error": "Favorite does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+# List all favorite restaurants for the logged-in user
+@api_view(['GET'])
+def list_favorites(request):
+    user = request.user
+    favorites = Favorite.objects.filter(user=user)
+    serializer = FavoriteSerializer(favorites, many=True)
+    return Response(serializer.data)
+
+# Get only the favorite restaurants for the logged-in user
+@api_view(['GET'])
+def get_favorite_restaurants(request):
+    user = request.user
+    favorite_restaurants = Favorite.objects.filter(user=user).values_list('restaurant', flat=True)
+    restaurants = Restaurant.objects.filter(id__in=favorite_restaurants)
+    serializer = RestaurantSerializer(restaurants, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def save_restaurant(request):
+    if request.method == 'POST':
+        serializer = RestaurantSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
