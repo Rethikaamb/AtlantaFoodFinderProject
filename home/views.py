@@ -99,10 +99,14 @@ def map_view(request):
         form = RestaurantSearchForm(request.POST)
         if form.is_valid():
             query = form.cleaned_data['query']
+            rating_filter = form.cleaned_data.get('rating', 0)
+            distance_filter = form.cleaned_data.get('distance', 20233)
+            print(distance_filter)
             api_key = settings.GOOGLE_MAPS_API_KEY
-            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&key={api_key}"
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location=LATITUDE,LONGITUDE&radius={distance_filter}&key={api_key}"
             response = requests.get(url)
-            search_results = response.json().get('results',[])
+            results = response.json().get('results',[])
+            search_results = [place for place in results if place.get('rating',0) >= int(rating_filter)]
     return render(request, 'map.html', {
         'form': form,
         'search_results': search_results,
