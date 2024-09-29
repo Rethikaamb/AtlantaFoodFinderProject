@@ -34,35 +34,40 @@ def signup(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
 
-        if User.objects.filter(username=username):
-            messages.error(request, "Username already taken")
-            return redirect('home')
-
-        # Validate the email format
+         # Validate the email format
         try:
             validate_email(email)
         except ValidationError:
             messages.error(request, "Invalid email address.")
             return redirect('home')
 
-        if User.objects.filter(email=email):
+        if User.objects.filter(username=username):
+            messages.error(request, "Username already taken")
+            return redirect('home')
+
+        elif User.objects.filter(email=email):
             messages.error(request, "Email already associated with an account")
             return redirect('home')
 
         elif len(username) > 15 and not len(username) > 5 :
             messages.error(request, "Username must be less than 15 characters and greater than 5")
+            return redirect('home')
 
         elif not len(pass1) > 5 and len(pass1) > 15:
             messages.error(request, "Password must be greater than 5 characters and less than 15")
-
+            return redirect('home')
         elif pass1 != pass2:
             messages.error(request, "Passwords must match")
+            return redirect('home')
 
         elif not username.isalnum():
             messages.error(request, "Username must be alphanumeric")
+            return redirect('home')
 
         elif not pass1.isalnum():
             messages.error(request, "Password must be alphanumeric")
+            return redirect('home')
+
         else:
             # THE FOLLOWING EXISTS IN CASE WE EVER WANT TO SEND VERIFICATION/WELCOME EMAILS
             # CURRENTLY, THE SETTINGS OF THE GOOGLE ACCOUNT ARE NOT LIKING THE DJANGO LOGIN, SO IT IS NOT CURRENTLY IN OPERATION
