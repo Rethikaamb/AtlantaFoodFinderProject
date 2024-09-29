@@ -9,7 +9,6 @@ margin: 0;
 }
 
 .wrapper {
-    /*border: 1px solid black; might remove border*/
     width: 90%;
     max-width: 1536px;
     margin-inline: auto;

@@ -4,47 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="map html p2 to add button to go to account page + add account function">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="Google Maps Page Formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
-    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
-        <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="mackenzie" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;eperry40&quot;
+    &quot;assignee&quot;: &quot;Rethikaamb&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Rethikaamb/AtlantaFoodFinderProject.git&quot;,
-    &quot;accountId&quot;: &quot;0a66d799-a045-4be8-9afb-a20653c0012c&quot;
+    &quot;accountId&quot;: &quot;69b40934-068a-41f0-a080-53989817dc3b&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2mCiBD64g8GgwvDMjmdGTQoZnw4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,32 +55,19 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;enya&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Rethika&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/AtlantaFoodFinderProject/templates/home/login.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.login.html" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -96,123 +86,28 @@
       <updated>1726586820916</updated>
       <workItem from="1726586821983" duration="5067000" />
       <workItem from="1727200838524" duration="4175000" />
-      <workItem from="1727214849959" duration="168000" />
-      <workItem from="1727289985784" duration="9447000" />
-      <workItem from="1727448819393" duration="4440000" />
-      <workItem from="1727484173641" duration="896000" />
-      <workItem from="1727548466226" duration="721000" />
+      <workItem from="1727229610095" duration="663000" />
+      <workItem from="1727465006456" duration="4344000" />
     </task>
-    <task id="LOCAL-00001" summary="signup enhancements">
+    <task id="LOCAL-00001" summary="added Google Maps functionality">
       <option name="closed" value="true" />
-      <created>1727290442324</created>
+      <created>1727205497860</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1727290442324</updated>
+      <updated>1727205497860</updated>
     </task>
-    <task id="LOCAL-00002" summary="signup enhancements">
-      <option name="closed" value="true" />
-      <created>1727291522073</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1727291522073</updated>
-    </task>
-    <task id="LOCAL-00003" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727396335551</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1727396335551</updated>
-    </task>
-    <task id="LOCAL-00004" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727396446157</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1727396446157</updated>
-    </task>
-    <task id="LOCAL-00005" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727396718844</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1727396718844</updated>
-    </task>
-    <task id="LOCAL-00006" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727397244628</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1727397244628</updated>
-    </task>
-    <task id="LOCAL-00007" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727397413675</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1727397413675</updated>
-    </task>
-    <task id="LOCAL-00008" summary="forgotpassword user story">
-      <option name="closed" value="true" />
-      <created>1727397481192</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1727397481192</updated>
-    </task>
-    <task id="LOCAL-00009" summary="changes">
-      <option name="closed" value="true" />
-      <created>1727407310141</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1727407310141</updated>
-    </task>
-    <task id="LOCAL-00010" summary="map html to add button to go to account page + add account function">
-      <option name="closed" value="true" />
-      <created>1727449998809</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1727449998809</updated>
-    </task>
-    <task id="LOCAL-00011" summary="map html p2 to add button to go to account page + add account function">
-      <option name="closed" value="true" />
-      <created>1727450427749</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1727450427749</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="signup enhancements" />
-    <MESSAGE value="forgotpassword user story" />
-    <MESSAGE value="changes" />
-    <MESSAGE value="map html to add button to go to account page + add account function" />
-    <MESSAGE value="map html p2 to add button to go to account page + add account function" />
-    <option name="LAST_COMMIT_MESSAGE" value="map html p2 to add button to go to account page + add account function" />
+    <MESSAGE value="added Google Maps functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Google Maps functionality" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AtlantaFoodFinder$urls.coverage" NAME="urls Coverage Results" MODIFIED="1727204931902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AtlantaFoodFinder" />
   </component>
 </project>
