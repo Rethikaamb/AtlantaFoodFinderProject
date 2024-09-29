@@ -61,6 +61,9 @@ def signup(request):
         if not username.isalnum():
             messages.error(request, "Username must be alphanumeric")
 
+        if not pass1.isalnum():
+            messages.error(request, "Password must be alphanumeric")
+
         #THE FOLLOWING EXISTS IN CASE WE EVER WANT TO SEND VERIFICATION/WELCOME EMAILS
         #CURRENTLY, THE SETTINGS OF THE GOOGLE ACCOUNT ARE NOT LIKING THE DJANGO LOGIN, SO IT IS NOT CURRENTLY IN OPERATION
         user = User.objects.create_user(username, email, pass1)
