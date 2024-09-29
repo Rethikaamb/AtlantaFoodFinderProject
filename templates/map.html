@@ -72,7 +72,7 @@
 
                     // Add click event to the marker to open the InfoWindow
                     userMarker.addListener('click', function() {
-                    infoWindow.open(map, userMarker);
+                        infoWindow.open(map, userMarker);
                     });
                   
                    fetchNearbyRestaurants(pos)
@@ -104,22 +104,25 @@
        }
       
        function fetchNearbyRestaurants(location) {
-           // Set up PlacesService
-           var service = new google.maps.places.PlacesService(map);
+            var service = new google.maps.places.PlacesService(map);
 
+            function handleResults(results, status, pagination) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        createMarker(results[i]);
+                    }
 
-           // Search for nearby restaurants
-           service.nearbySearch({
-               location: location,
-               radius: 1500,  // Search within 1.5 km
-               type: ['restaurant']
-           }, function(results, status) {
-               if (status === google.maps.places.PlacesServiceStatus.OK) {
-                   for (var i = 0; i < results.length; i++) {
-                       createMarker(results[i]);
-                   }
-               }
-           });
+                    // If there are more results, get them
+                    if (pagination.hasNextPage) {
+                        pagination.nextPage();
+                     }
+                }
+            }
+            service.nearbySearch({
+                location: location,
+                radius: 5000, // 5 km radius
+                type: ['restaurant']
+            }, handleResults);
        }
 
 
@@ -131,14 +134,36 @@
            });
 
 
-           // Add click event to show details of the restaurant
+           // Add click event to show detailed information in InfoWindow
            google.maps.event.addListener(marker, 'click', function () {
-               infoWindow.setContent(
-                   '<div><strong>' + place.name + '</strong><br>' +
-                   'Rating: ' + (place.rating || 'N/A') + '<br>' +
-                   (place.vicinity || 'No address') + '</div>'
-               );
-               infoWindow.open(map, this);
+               var service = new google.maps.places.PlacesService(map);
+               service.getDetails({ placeId: place.place_id }, function(placeDetails, status) {
+                   if (status === google.maps.places.PlacesServiceStatus.OK) {
+                       // Extract detailed information
+                       var name = placeDetails.name;
+                       var address = placeDetails.formatted_address || 'No address available';
+                       var phone = placeDetails.formatted_phone_number || 'No phone number available';
+                       var rating = placeDetails.rating || 'No rating available';
+                       var website = placeDetails.url; // Google Maps URL
+                       var cuisine = placeDetails.types ? placeDetails.types.join(', ') : 'Cuisine type not available';
+                       //var cuisine = (placeDetails.types.filter(type => type.includes('_restaurant')).map(type => type.replace('_restaurant', '')).join(', ')) || 'N/A';
+                       
+                       // Set content for InfoWindow
+                       var contentString = `
+                           <div>
+                               <h3>${name}</h3>
+                               <p><strong>Address:</strong> ${address}</p>
+                               <p><strong>Phone:</strong> ${phone}</p>
+                               <p><strong>Rating:</strong> ${rating} / 5</p>
+                               <p><strong>Cuisine:</strong> ${cuisine}</p>
+                               <p><a href="${website}" target="_blank">View on Google Maps</a></p>
+                           </div>
+                       `;
+                       
+                       infoWindow.setContent(contentString);
+                       infoWindow.open(map, marker);
+                   }
+               });
            });
        }
    </script>

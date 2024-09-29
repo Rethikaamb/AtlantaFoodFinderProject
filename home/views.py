@@ -19,7 +19,7 @@ from home.forms import RestaurantSearchForm
 def home(request):
     if User.is_authenticated and not User.is_active:
         return redirect('map/')
-    return render(request, "home/login.html")
+    return render(request, "home/index.html")
 
 
 def signup(request):
@@ -81,7 +81,7 @@ def login(request):
             return redirect('map/')
         else:
             messages.error(request, "Invalid username or password")
-            return redirect('home')
+            return redirect('login')
 
     return render(request, "home/login.html")
 
