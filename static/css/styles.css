@@ -1,9 +1,7 @@
 /* General Page Styles */
 body {
-    font-family: "Courier New";
-
-    background-color: #FFF6E5;
-
+   font-family: "Inter", sans-serif;
+    background-color: #EEE0D7;
     background-image:
         url("images/imageone23400.png"),
         url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
@@ -13,6 +11,7 @@ body {
     background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
     background-position: .4% 100%, 100% 0%; /* Set positions for each image */
 
+
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,62 +20,89 @@ body {
     height: 100vh;
 }
 
-
-
-
-/* Container for the login form */
-.login-form {
-    padding:13px;              /* Padding around the form */
-    border-radius: 8px;         /* Rounded corners */
-    max-width: 400px;           /* Max width of the form */
-    margin:-10px auto;               /* Center the form */
-}
-
-/* Styling for labels */
 .login-form label {
-    font-weight: lighter;          /* Bold text for labels */
-    margin-top: 0px;          /* Space above labels */
-    margin-right: 300px;
-    color: #FFF6E5;
-    font-family: "Courier New";
-
-
+    display: block;             /* Make the labels block elements */
+    font-weight: lighter;       /* Light font weight */
+    margin-bottom: 5px;         /* Space below the label */
+    color: #FFF6E5;             /* Label text color */
+   font-family: "Montserrat", sans-serif;
+    font-size: 15px;            /* Adjust font size */
+    text-align: left;           /* Align the text to the left */
 }
-/* Styling for input fields */
+
+
+/* Styling for input fields to appear as lines */
 .login-input {
     width: 100%;                /* Full width */
-    padding: 7px;             /* Padding inside the input */
-    margin-top: 5px;           /* Space above the input */
-    margin-bottom: 15px;       /* Space below the input */
-    background-color: #FFF6E5;   /* Change background color (light grey) */
-    opacity: 80%; /* Makes the entire container, including text, 80% opaque */
+    padding: 7px;               /* Padding inside the input */
+    margin-top: 1px;            /* Space above the input */
 
-    border: 2px solid #ccc;    /* Light grey border */
-    border-radius: 6px;        /* Rounded corners */
-    font-size: 16px;           /* Larger font size */
+    margin-bottom: 15px;        /* Space below the input */
+    background-color: transparent;  /* Transparent background */
+    border: none;               /* Remove border */
+    border-bottom: 2px solid #4D1F1A; /* Add only a bottom border to create the line */
+    font-size: 16px;            /* Larger font size */
+    font-family: "Montserrat", sans-serif;
+    color: #FFF6E5;               /* Text color */
 }
+
+.login-input::placeholder {
+    color: #FFF6E5;             /* Placeholder text color */
+    font-size: 16px;
+    opacity: 0.6;               /* Slight transparency for the placeholder */
+
+
+}
+
+/* Add focus effect for the input fields */
+.login-input:focus {
+    outline: none;              /* Remove the default outline */
+    color: #FFF6E5;
+    border-bottom: 2px solid #FFF6E5; /* Change border color on focus */
+}
+
 
 .login-button {
     background-color: black; /* Green background */
     color: white;              /* White text */
     border: none;              /* No border */
 
-    width: 80%;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 65%;
     padding: 9px 10px;       /* Some padding */
     text-align: center;        /* Centered text */
     text-decoration: none;     /* No underline */
     display: inline-block;     /* Display as inline-block */
-    font-size: 16px;          /* Larger text */
-    margin: 4px 2px;          /* Small margin */
+    font-size: 14px;          /* Larger text */
     cursor: pointer;           /* Pointer cursor on hover */
-    border-radius: 6px;       /* Rounded corners */
-    font-family: "Courier New";
+    border-radius: 10px;       /* Rounded corners */
+   font-family: "Montserrat", sans-serif;
+
 
 }
+
+h9{
+    color: #FFF6E5;
+    opacity: .8;
+}
+
 
 .login-button:hover {
-    background-color: #4D1F1A; /* Darker green on hover */
+    background-color: #FFF6E5; /* Darker green on hover */
+    color: black;             /* Change text color on hover (gold in this case) */
+
 }
+
+p {
+    text-align: right; /* Center align */
+    margin-left: 10px;
+    font-size: 13px; /* Font size */
+    margin-top: -5px;
+    margin-bottom: 20px;
+    color: black;
+}
+
 
 /* Alert Messages */
 .alert {
@@ -109,14 +135,15 @@ body {
 button {
     border: none;              /* No border */
     background-color: #4D1F1A; /* Green background */
-    width: 75%;
+    width: 60%;
     text-align: center;        /* Centered text */
     text-decoration: none;     /* No underline */
     display: inline-block;     /* Display as inline-block */
-    font-size: 16px;          /* Larger text */
+    font-size: 14px;          /* Larger text */
     margin: 4px 2px;          /* Small margin */
     cursor: pointer;           /* Pointer cursor on hover */
-    border-radius: 6px;       /* Rounded corners */
+    margin-top: 3%;
+    border-radius: 10px;       /* Rounded corners */
     text-align: center;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
@@ -129,25 +156,28 @@ button a {
     height: 100%; /* Ensure it takes up the full height of the button */
     color: white;
     text-decoration: none;
+
     padding: 8px 0; /* Optional, to make the text align well vertically */
-    font-family: "Courier New";
+   font-family: "Montserrat", sans-serif;
+}
+button:hover a {
+    color: black;  /* Change text color to gold (or any color you prefer) */
 }
 
 button:hover {
-    background-color: black; /* Darker shade on hover */
+    background-color: #FFF6E5; /* Darker shade on hover */
 }
 
 /* Centering the form content */
 .container {
-    background: #8C4B3C;
-    padding: 40px;
-    opacity: 95%; /* Makes the entire container, including text, 80% opaque */
+    background: #5F3830;
+    padding: 50px;
+
+    opacity: 96%; /* Makes the entire container, including text, 80% opaque */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
     /* Adding a darker border */
-    border: 15px solid #4D1F1A; /* Darker shade of the background color */
-
+    border: 11px solid #4D1F1A; /* Darker shade of the background color */
     max-width: 400px;
     width: 100%;
     height: 40%;
@@ -160,13 +190,13 @@ h3.welcome {
     margin-bottom: 20px;
     font-size: 24px;
 
-    font-weight: bolder;
+    font-weight: bold;
     color: #FFF6E5;
     position: relative;
     top: -20px; /* Move it up a bit */
 }
 
-/* Specific button styles */
+
 
 
 /* Responsive design for mobile screens */

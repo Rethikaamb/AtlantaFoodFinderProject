@@ -17,10 +17,12 @@
             <label for="">Password</label>
             <input type="password" id="pass1" name="pass1" placeholder="Enter your password" Required>
             <br>
-            <button type="submit">Log In</button>
+            <button type="submit" class="login-button">Log In</button>
         </form>
-        <p class="para-3">New Here? <a href="{% url "signup" %}">Register Today!</a></p>
+        <button class="signup-button">
+            <a href="{% url 'signup' %}" class="signup-link">Sign Up</a>
+        </button>
         <p class="para-2"><a href= "{% url "forgotpassword" %}" >Forgot Password?</a></p>
     </div>
-</body>
+</body>s
 </html>
