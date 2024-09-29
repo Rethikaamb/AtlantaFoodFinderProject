@@ -20,6 +20,19 @@ body {
     height: 100vh;
 }
 
+/* Specific style for the "Forgot Password?" link */
+.para-2 a {
+    color: #D4B8A0; /* Change to your desired color */
+    text-decoration: none; /* Remove underline */
+
+}
+
+.para-2 a:hover {
+    color: #D4B8A0; /* Change hover color if needed */
+    text-decoration: underline; /* Optional: Add underline on hover */
+
+
+}
 .login-form label {
     display: block;             /* Make the labels block elements */
     font-weight: lighter;       /* Light font weight */
@@ -69,7 +82,7 @@ body {
 
     margin-top: -10px;
     margin-bottom: 10px;
-    width: 65%;
+    width: 80%;
     padding: 9px 10px;       /* Some padding */
     text-align: center;        /* Centered text */
     text-decoration: none;     /* No underline */
@@ -135,7 +148,7 @@ p {
 button {
     border: none;              /* No border */
     background-color: #4D1F1A; /* Green background */
-    width: 60%;
+    width: 80%;
     text-align: center;        /* Centered text */
     text-decoration: none;     /* No underline */
     display: inline-block;     /* Display as inline-block */

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="changes to account style">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="forgotpassword user story">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/forgotpassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/forgotpassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="enya" />
+        <entry key="$PROJECT_DIR$" value="mackenzie" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,7 +56,6 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2mCiBD64g8GgwvDMjmdGTQoZnw4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,7 +67,7 @@
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;enya&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vaishnavi&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -81,6 +84,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="JavaScript Debug.login.html" />
         <item itemvalue="JavaScript Debug.login.html" />
       </list>
     </recent_temporary>
@@ -105,7 +110,6 @@
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727214849959" duration="168000" />
       <workItem from="1727289985784" duration="6942000" />
-      <workItem from="1727643002785" duration="891000" />
     </task>
     <task id="LOCAL-00001" summary="signup enhancements">
       <option name="closed" value="true" />
@@ -171,63 +175,7 @@
       <option name="project" value="LOCAL" />
       <updated>1727397481192</updated>
     </task>
-    <task id="LOCAL-00009" summary="Google Maps Page Formatting -- adding account page">
-      <option name="closed" value="true" />
-      <created>1727637009406</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1727637009406</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Google Maps Page Formatting -- adding account page + div to contain map">
-      <option name="closed" value="true" />
-      <created>1727637290867</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1727637290867</updated>
-    </task>
-    <task id="LOCAL-00011" summary="changes to account style">
-      <option name="closed" value="true" />
-      <created>1727637481581</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1727637481581</updated>
-    </task>
-    <task id="LOCAL-00012" summary="changes to account style">
-      <option name="closed" value="true" />
-      <created>1727640136982</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1727640136982</updated>
-    </task>
-    <task id="LOCAL-00013" summary="changes to account style">
-      <option name="closed" value="true" />
-      <created>1727640985829</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1727640985829</updated>
-    </task>
-    <task id="LOCAL-00014" summary="changes to account style">
-      <option name="closed" value="true" />
-      <created>1727641270167</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1727641270167</updated>
-    </task>
-    <task id="LOCAL-00015" summary="changes to account style">
-      <option name="closed" value="true" />
-      <created>1727643088779</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1727643088779</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,10 +195,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="signup enhancements" />
     <MESSAGE value="forgotpassword user story" />
-    <MESSAGE value="Google Maps Page Formatting -- adding account page" />
-    <MESSAGE value="Google Maps Page Formatting -- adding account page + div to contain map" />
-    <MESSAGE value="changes to account style" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to account style" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgotpassword user story" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
