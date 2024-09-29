@@ -177,7 +177,7 @@
     {% if search_results %}
         <h2>Search Results:</h2>
         {% for result in search_results %}
-            <li>{{ result.name }} - {{ result.formatted_address }}</li>
+            <li>{{ result.name }} - {{ result.formatted_address }} - Rating: {{ result.rating }}</li>
         {% endfor %}
     {% endif %}
 </ul>
