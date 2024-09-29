@@ -1,13 +1,13 @@
 /* General Page Styles */
 body {
-    font-family: "Courier New"; /* Font family for body text */
-    background-color: #FFF6E5; /* Light background color */
+    font-family: "Inter", sans-serif; /* Match the first block's font */
+    background-color: #EEE0D7; /* Light background color */
     background-image:
         url("images/imageone23400.png"),
         url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
-    background-size: auto 130%, auto 120%; /* Adjust the height based on viewport, width auto */
-    background-attachment: fixed, fixed; /* Fix the first image, allow the second to scroll */
-    background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
+    background-size: auto 130%, auto 120%; /* Adjust the height based on viewport */
+    background-attachment: fixed, fixed; /* Fix the background images */
+    background-repeat: no-repeat, no-repeat; /* No repeating */
     background-position: .4% 100%, 100% 0%; /* Set positions for each image */
     margin: 0;
     padding: 0;
@@ -15,161 +15,126 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-
 }
 
 /* Box Styles */
 .signup-box,
 .forgotpass-box,
 .login-box {
-    width: 360px; /* Fixed width for all boxes */
-    margin: auto; /* Center boxes */
-    border-radius: 6px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    color: #ffffff; /* Text color */
-    opacity: 95%; /* Opacity */
-    padding: 20px; /* Padding inside the boxes */
-    background-color: #8C4B3C; /* Background color for boxes */
-    border: 15px solid #4D1F1A; /* Darker border color */
+    width: 360px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #FFF6E5; /* Text color matching the first block */
+    opacity: 96%; /* Match the first block's opacity */
+    padding: 30px; /* Increased padding for consistency */
+    background-color: #5F3830; /* Background similar to the first block */
+    border: 11px solid #4D1F1A; /* Darker border like in the first block */
 }
 
-/* Specific Box Heights */
+/* Adjust box height */
 .forgotpass-box {
-    height: 620px; /* Height for the forgot password box */
+    height: 620px;
 }
 
 .login-box {
-    height: 280px; /* Height for the login box */
+    height: 280px;
 }
 
-/* Heading Styles */
-h3 {
-    text-align: center; /* Center align */
-    padding-top: 15px; /* Padding at the top */
-    font-family: "Courier New"; /* Consistent font family */
-    color: #FFF6E5; /* Color for headings */
-    font-weight: normal; /* Normal weight for headings */
-}
-
-h4 {
-    text-align: center; /* Center align */
-    font-family: "Courier New"; /* Consistent font family */
+/* Headings */
+h3, h4 {
+    text-align: center;
+    font-family: "Montserrat", sans-serif; /* Font style matching the first block */
+    color: #FFF6E5;
+    font-weight: bold;
+    font-size: 24px; /* Adjusted font size to match the first block */
+    margin-bottom: 20px;
 }
 
 /* Form Styles */
 form {
-    width: 300px; /* Width of the form */
-    margin-left: 20px; /* Margin on the left */
+    width: 100%;
+    margin-left: 0;
 }
 
 form label {
-    display: flex; /* Flex display for labels */
-    margin-top: 20px; /* Margin above labels */
-    font-size: 18px; /* Font size for labels */
-    color: #FFF6E5; /* Label color */
-    font-family: "Courier New"; /* Consistent font family */
+    display: block;
+    font-weight: normal;
+    margin-bottom: 5px;
+    color: #FFF6E5;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    text-align: left;
 }
 
 form input {
-    width: 100%; /* Full width for inputs */
-    padding: 7px; /* Padding for inputs */
-    border: 2px solid #ccc; /* Light grey border */
-    border-radius: 6px; /* Rounded corners */
-    outline: none; /* Remove outline */
-    background-color: #FFF6E5; /* Background color for input */
-    opacity: 80%; /* Make input slightly transparent */
+    width: 100%;
+    padding: 7px;
+    margin-top: 1px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #4D1F1A; /* Bottom border to match first block */
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    color: #FFF6E5;
+}
+
+form input::placeholder {
+    color: #FFF6E5;
+    font-size: 16px;
+    opacity: 0.6;
+}
+
+form input:focus {
+    outline: none;
+    color: #FFF6E5;
+    border-bottom: 2px solid #FFF6E5;
 }
 
 /* Button Styles */
 input[type="button"],
 .login-button,
 .gradient-button {
-    width: 100%; /* Full width for buttons */
-    font-family: "Courier New";
-    height: 35px; /* Height for buttons */
-    margin-top: 20px; /* Space above buttons */
-    border-radius: 8px;         /* Rounded corners */
-    border: none; /* No border */
-    color: #ffffff; /* Text color */
-    font-size: 18px; /* Font size for buttons */
-    cursor: pointer; /* Pointer cursor */
-    text-transform: uppercase; /* Uppercase text */
-    background: linear-gradient(90deg, #4D1F1A, #7A4A45); /* Gradient background */
-    background-size: 200% 100%; /* Background size for the gradient effect */
-    transition: background-position 0.3s ease; /* Transition effect */
-
+    background-color: black;
+    color: white;
+    border: none;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 9px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
 }
 
-
-/* Move the button to the left */
-.login-button {
-    margin-left: 0; /* No margin on the left */
-}
-
-/* Gradient Button Hover Effect */
 input[type="button"]:hover,
 .login-button:hover,
 .gradient-button:hover {
-    background-position: 100% 0; /* Shift the gradient on hover */
+    background-color: #FFF6E5;
+    color: black;
 }
 
-/* Paragraph Styles */
-p {
-    text-align: center; /* Center align */
-    font-size: 15px; /* Font size */
-}
-
-.para-2,
-.para-3 {
-    text-align: center; /* Center align */
-    font-size: 15px; /* Font size */
-    margin-top: -10px; /* Negative margin for adjustment */
-}
-
-.para-2 {
-    color: #ffffff; /* White text */
-}
-
-.para-3 {
-    color: #000000; /* Black text */
-}
-
-.signup-button {
-    border: none;              /* No border */
-    background-color: #4D1F1A; /* Background color */
-    width: 75%;                /* Button width */
-    text-align: center;        /* Centered text */
-    text-decoration: none;     /* No underline */
-    display: inline-block;     /* Display as inline-block */
-    font-size: 16px;           /* Text size */
-    margin: 4px 9px;           /* Small margin */
-    cursor: pointer;           /* Pointer cursor on hover */
-    border-radius: 6px;        /* Rounded corners */
-    text-transform: uppercase; /* Uppercase text */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+/* Centering text and aligning links */
+.signup-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
 }
 
 .signup-button:hover {
-    background-color: black; /* Darker shade on hover */
+    background-color: black;
 }
-
-.signup-link {
-    display: block;         /* Make the anchor tag a block-level element */
-    width: 100%;            /* Full width */
-    height: 100%;           /* Full height */
-    color: white;           /* White text */
-    text-decoration: none;  /* No underline */
-    padding: 8px 0;         /* Padding to align text */
-    font-family: "Courier New", monospace; /* Font style */
-    text-align: center;     /* Center the text */
-}
-
-
-
 
 /* Responsive design for mobile screens */
 @media screen and (max-width: 600px) {
     body {
-        padding: 20px; /* Padding for small screens */
+        padding: 20px;
     }
 }
