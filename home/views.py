@@ -49,44 +49,38 @@ def signup(request):
             messages.error(request, "Email already associated with an account")
             return redirect('home')
 
-        if len(username) > 15:
-            messages.error(request, "Username must be less than 15 characters")
+        elif len(username) > 15 and not len(username) > 5 :
+            messages.error(request, "Username must be less than 15 characters and greater than 5")
 
-        if not len(username) > 5:
-            messages.error(request, "Username must be greater than 5 characters")
+        elif not len(pass1) > 5 and len(pass1) > 15:
+            messages.error(request, "Password must be greater than 5 characters and less than 15")
 
-        if not len(pass1) > 5:
-            messages.error(request, "Password must be greater than 5 characters")
-
-        if len(pass1) > 15:
-            messages.error(request, "Password must be less than 15 characters")
-
-        if pass1 != pass2:
+        elif pass1 != pass2:
             messages.error(request, "Passwords must match")
 
-        if not username.isalnum():
+        elif not username.isalnum():
             messages.error(request, "Username must be alphanumeric")
 
-        if not pass1.isalnum():
+        elif not pass1.isalnum():
             messages.error(request, "Password must be alphanumeric")
+        else:
+            # THE FOLLOWING EXISTS IN CASE WE EVER WANT TO SEND VERIFICATION/WELCOME EMAILS
+            # CURRENTLY, THE SETTINGS OF THE GOOGLE ACCOUNT ARE NOT LIKING THE DJANGO LOGIN, SO IT IS NOT CURRENTLY IN OPERATION
+            user = User.objects.create_user(username, email, pass1)
+            user.first_name = fname
+            user.last_name = lname
 
-        #THE FOLLOWING EXISTS IN CASE WE EVER WANT TO SEND VERIFICATION/WELCOME EMAILS
-        #CURRENTLY, THE SETTINGS OF THE GOOGLE ACCOUNT ARE NOT LIKING THE DJANGO LOGIN, SO IT IS NOT CURRENTLY IN OPERATION
-        user = User.objects.create_user(username, email, pass1)
-        user.first_name = fname
-        user.last_name = lname
+            user.save()
 
-        user.save()
+            messages.success(request, "Account successfully created")
 
-        messages.success(request, "Account successfully created")
+            subject = "Welcome to Atl Food Finder - Account Creation"
+            message = "Hello, " + user.first_name + "!\n" + "Welcome to Atl Food Finder. Thanks for visiting our site. We have also sent you a confirmation email to validate your address. You must do this in order to activate your account.\n\n Thank you,\n 2340 Team 29"
+            from_email = settings.EMAIL_HOST_USER
+            to_email = [user.email]
+            send_mail(subject, message, from_email, to_email, fail_silently=True)
 
-        subject = "Welcome to Atl Food Finder - Account Creation"
-        message = "Hello, " + user.first_name + "!\n" + "Welcome to Atl Food Finder. Thanks for visiting our site. We have also sent you a confirmation email to validate your address. You must do this in order to activate your account.\n\n Thank you,\n 2340 Team 29"
-        from_email = settings.EMAIL_HOST_USER
-        to_email = [user.email]
-        send_mail(subject, message, from_email, to_email, fail_silently=True)
-
-        return redirect('login')
+            return redirect('login')
 
     return render(request, "home/signup.html")
 
