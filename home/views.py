@@ -82,7 +82,7 @@ def login(request):
             return redirect('map/')
         else:
             messages.error(request, "Invalid username or password")
-            return redirect('home')
+            return redirect('login')
 
     return render(request, "home/login.html")
 
