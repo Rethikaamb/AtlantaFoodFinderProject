@@ -2,17 +2,81 @@
 <html lang="">
 <head>
     <title>Google Maps Integration</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places"></script>
     <script type="text/javascript">
+        var map;
+        var service;
+        var infowindow;
+
         function initMap() {
-            var location = {lat: 33.7833, lng: -84.3831};  // Example coordinates
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: location
+            var defaultLocation = {lat: 33.7833, lng: -84.3831};  //example coordinates
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: defaultLocation
             });
-            var marker = new google.maps.Marker({
-                position: location,
-                map: map
+
+            infowindow = new google.maps.InfoWindow();
+
+            //event listener for map clicks to search for restaurants near the clicked location
+            map.addListener('click', function(event) {
+                var clickedLocation = event.latLng;
+                document.getElementById('coords').innerHTML = 'Coordinates: ' + clickedLocation.lat() + ', ' + clickedLocation.lng();
+                searchNearbyRestaurants(clickedLocation);
+            });
+        }
+
+        //function to search for nearby restaurants based on clicked location
+        function searchNearbyRestaurants(location) {
+            var request = {
+                location: location,
+                radius: '500',  //meters
+                type: ['restaurant']
+            };
+
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    displayRestaurants(results);
+                } else {
+                    document.getElementById('reviews').innerHTML = '<p>No restaurants found near this location.</p>';
+                }
+            });
+        }
+
+        //function to display restaurants and their reviews
+        function displayRestaurants(places) {
+            var reviewsDiv = document.getElementById('reviews');
+            reviewsDiv.innerHTML = `<h2>Restaurants Found:</h2>`;
+
+            places.forEach(function(place) {
+                reviewsDiv.innerHTML += `
+                    <div>
+                        <p><strong>${place.name}</strong> (Rating: ${place.rating})</p>
+                        <button onclick="getRestaurantReviews('${place.place_id}')">View Reviews</button>
+                    </div>
+                    <hr>`;
+            });
+        }
+
+        //function to fetch and display reviews for a selected restaurant
+        function getRestaurantReviews(placeId) {
+            service.getDetails({
+                placeId: placeId,
+                fields: ['name', 'rating', 'reviews']
+            }, function(place, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    var reviewsDiv = document.getElementById('reviews');
+                    reviewsDiv.innerHTML = `<h2>Reviews for ${place.name}</h2>`;
+
+                    place.reviews.forEach(function(review) {
+                        reviewsDiv.innerHTML += `
+                            <div>
+                                <p><strong>${review.author_name}</strong> (${review.rating} stars): ${review.text}</p>
+                            </div>`;
+                    });
+                } else {
+                    document.getElementById('reviews').innerHTML = '<p>No reviews found for this restaurant.</p>';
+                }
             });
         }
     </script>
@@ -20,5 +84,7 @@
 <body onload="initMap()">
     <h1>My Google Map</h1>
     <div id="map" style="height: 400px; width: 100%;"></div>
+    <div id="coords"></div> <!-- Display coordinates here -->
+    <div id="reviews"></div> <!-- Display reviews and restaurant info here -->
 </body>
 </html>
