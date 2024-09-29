@@ -141,6 +141,3 @@ def forgotpassword(request):
 
 def account(request):
     return render(request, 'account.html')
-
-def favorites(request):
-    return render(request, 'favorites.html')
