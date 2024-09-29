@@ -49,13 +49,14 @@ def signup(request):
             messages.error(request, "Email already associated with an account")
             return redirect('home')
 
-        elif len(username) > 15 and not len(username) > 5 :
+        elif len(username) > 15 or len(username) < 5 :
             messages.error(request, "Username must be less than 15 characters and greater than 5")
             return redirect('home')
 
-        elif not len(pass1) > 5 and len(pass1) > 15:
+        elif len(pass1) < 5 or len(pass1) > 15:
             messages.error(request, "Password must be greater than 5 characters and less than 15")
             return redirect('home')
+
         elif pass1 != pass2:
             messages.error(request, "Passwords must match")
             return redirect('home')
