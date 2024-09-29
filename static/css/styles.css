@@ -20,6 +20,58 @@ body {
     height: 100vh;
 }
 
+/* Alert base style */
+.alert {
+    margin: 0;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: white;
+    width: 90%;
+    margin-top: -30px;
+
+    margin-left: 10px;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;  /* Initial opacity */
+    transition: opacity 0.5s ease; /* Smooth transition */
+}
+
+/* Different alert background colors */
+.alert-danger { background-color: #f44336; }
+.alert-warning { background-color: #ff9800; }
+.alert-info { background-color: #2196F3; }
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Fade-out class for alerts */
+.alert.fade-out {
+    opacity: 0; /* Makes the alert transparent */
+}
+
+/* Optional: Remove alert after it fades out */
+.hidden {
+    display: none;
+}
+
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* Specific style for the "Forgot Password?" link */
 .para-2 a {
     color: #D4B8A0; /* Change to your desired color */
@@ -116,34 +168,6 @@ p {
     color: black;
 }
 
-
-/* Alert Messages */
-.alert {
-    padding: 15px;
-    color: white;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.alert strong {
-    font-weight: normal;
-}
-
-.alert button.close {
-    background: none;
-    border: none;
-
-    color: white;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-}
 
 button {
     border: none;              /* No border */
