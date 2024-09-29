@@ -123,10 +123,12 @@ def forgotpassword(request):
                 # Check if new pass is the same as old
                 if check_password(new_pass1, user.password):
                     messages.error(request, "New password cannot be the same as the old password.")
+                if not new_pass1.isalnum():
+                    messages.error(request, "Password must be alphanumeric")
                 elif new_pass1 == new_pass2:
                     user.password = make_password(new_pass1)
                     user.save()
-                    messages.success(request, "Sucess! You will get redirected shortly.")
+                    messages.success(request, "Success! You will get redirected shortly.")
                     return redirect('login')
                 else:
                     messages.error(request, "Passwords do not match.")
