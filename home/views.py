@@ -80,7 +80,8 @@ def signup(request):
 
             return redirect('login')
 
-    return render(request, "home/signup.html")
+    # return render(request, "home/signup.html")
+    return redirect("home/signup.html")
 
 def login(request):
     if request.method == "POST":
