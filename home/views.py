@@ -144,11 +144,12 @@ def forgotpassword(request):
         if username and new_pass1 and new_pass2:  #all fields filled in
             try:
                 user = User.objects.get(username=username)
-
                 # Check if new pass is the same as old
                 if check_password(new_pass1, user.password):
                     messages.error(request, "New password cannot be the same as the old password.")
-                if not new_pass1.isalnum():
+                elif len(new_pass1) < 5 or len(new_pass1) > 15:
+                    messages.error(request, "New password must be greater than 5 characters and less than 15")
+                elif not new_pass1.isalnum():
                     messages.error(request, "Password must be alphanumeric")
                 elif new_pass1 == new_pass2:
                     user.password = make_password(new_pass1)
