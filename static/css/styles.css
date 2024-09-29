@@ -1,12 +1,18 @@
 /* General Page Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Courier New";
+
     background-color: #FFF6E5;
-    background-image: url("images/imageone23400.png");
-    background-size: contain;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: .4% 100%; /* Moves the image 10% from the left and 30% from the top */
+
+    background-image:
+        url("images/imageone23400.png"),
+        url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
+
+    background-size: auto 130%, auto 120%; /* Adjust the height based on viewport, width auto */
+    background-attachment: fixed, fixed; /* Fix the first image, allow the second to scroll */
+    background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
+    background-position: .4% 100%, 100% 0%; /* Set positions for each image */
+
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,16 +21,66 @@ body {
     height: 100vh;
 }
 
-h3, h4 {
-    color: #333;
-    text-align: center;
 
+
+
+/* Container for the login form */
+.login-form {
+    padding:13px;              /* Padding around the form */
+    border-radius: 8px;         /* Rounded corners */
+    max-width: 400px;           /* Max width of the form */
+    margin:-10px auto;               /* Center the form */
+}
+
+/* Styling for labels */
+.login-form label {
+    font-weight: lighter;          /* Bold text for labels */
+    margin-top: 0px;          /* Space above labels */
+    margin-right: 300px;
+    color: #FFF6E5;
+    font-family: "Courier New";
+
+
+}
+/* Styling for input fields */
+.login-input {
+    width: 100%;                /* Full width */
+    padding: 7px;             /* Padding inside the input */
+    margin-top: 5px;           /* Space above the input */
+    margin-bottom: 15px;       /* Space below the input */
+    background-color: #FFF6E5;   /* Change background color (light grey) */
+    opacity: 80%; /* Makes the entire container, including text, 80% opaque */
+
+    border: 2px solid #ccc;    /* Light grey border */
+    border-radius: 6px;        /* Rounded corners */
+    font-size: 16px;           /* Larger font size */
+}
+
+.login-button {
+    background-color: black; /* Green background */
+    color: white;              /* White text */
+    border: none;              /* No border */
+
+    width: 80%;
+    padding: 9px 10px;       /* Some padding */
+    text-align: center;        /* Centered text */
+    text-decoration: none;     /* No underline */
+    display: inline-block;     /* Display as inline-block */
+    font-size: 16px;          /* Larger text */
+    margin: 4px 2px;          /* Small margin */
+    cursor: pointer;           /* Pointer cursor on hover */
+    border-radius: 6px;       /* Rounded corners */
+    font-family: "Courier New";
+
+}
+
+.login-button:hover {
+    background-color: #4D1F1A; /* Darker green on hover */
 }
 
 /* Alert Messages */
 .alert {
     padding: 15px;
-    background-color: #f44336; /* Red background for alerts */
     color: white;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -35,12 +91,13 @@ h3, h4 {
 }
 
 .alert strong {
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .alert button.close {
     background: none;
     border: none;
+
     color: white;
     position: absolute;
     top: 10px;
@@ -49,66 +106,68 @@ h3, h4 {
     cursor: pointer;
 }
 
-/* Buttons */
 button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    background-color:black; /* Bootstrap-like primary color */
-    color: black;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+    border: none;              /* No border */
+    background-color: #4D1F1A; /* Green background */
+    width: 75%;
+    text-align: center;        /* Centered text */
+    text-decoration: none;     /* No underline */
+    display: inline-block;     /* Display as inline-block */
+    font-size: 16px;          /* Larger text */
+    margin: 4px 2px;          /* Small margin */
+    cursor: pointer;           /* Pointer cursor on hover */
+    border-radius: 6px;       /* Rounded corners */
     text-align: center;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
 }
 
 button a {
+
+    display: block; /* Make the anchor tag a block-level element */
+    width: 100%; /* Ensure it takes up the full width of the button */
+    height: 100%; /* Ensure it takes up the full height of the button */
     color: white;
     text-decoration: none;
+    padding: 8px 0; /* Optional, to make the text align well vertically */
+    font-family: "Courier New";
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: black; /* Darker shade on hover */
 }
 
 /* Centering the form content */
 .container {
-    background:#8C4B3C;
-    background-overlay: 50%;
-    padding: 60px;
+    background: #8C4B3C;
+    padding: 40px;
+    opacity: 95%; /* Makes the entire container, including text, 80% opaque */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* Adding a darker border */
+    border: 15px solid #4D1F1A; /* Darker shade of the background color */
+
     max-width: 400px;
     width: 100%;
-    height: 50%;
+    height: 40%;
     text-align: center;
-
 }
+
 
 
 h3.welcome {
     margin-bottom: 20px;
     font-size: 24px;
+
+    font-weight: bolder;
+    color: #FFF6E5;
     position: relative;
     top: -20px; /* Move it up a bit */
 }
 
 /* Specific button styles */
-button.signup {
-    background-color: #28a745; /* Green color for Sign Up */
-}
 
-button.login {
-    background-color: #007bff; /* Blue color for Log In */
-}
-
-button.logout {
-    background-color: #dc3545; /* Red color for Log Out */
-}
 
 /* Responsive design for mobile screens */
 @media screen and (max-width: 600px) {
