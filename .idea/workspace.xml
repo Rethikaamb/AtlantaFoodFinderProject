@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="updates to forgotpassword function">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="updates to signup function">
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727229610095" duration="663000" />
       <workItem from="1727465006456" duration="4344000" />
-      <workItem from="1727650123167" duration="68000" />
+      <workItem from="1727650123167" duration="143000" />
     </task>
     <task id="LOCAL-00001" summary="added Google Maps functionality">
       <option name="closed" value="true" />
@@ -168,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727648911581</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="updates to signup function">
+      <option name="closed" value="true" />
+      <created>1727650210636</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727650210636</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,9 +184,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Google Maps functionality" />
     <MESSAGE value="attempt at favorites" />
-    <MESSAGE value="updates to signup function" />
     <MESSAGE value="updates to forgotpassword function" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates to forgotpassword function" />
+    <MESSAGE value="updates to signup function" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates to signup function" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AtlantaFoodFinder$urls.coverage" NAME="urls Coverage Results" MODIFIED="1727204931902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AtlantaFoodFinder" />
