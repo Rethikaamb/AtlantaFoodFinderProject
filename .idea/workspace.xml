@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="forgotpassword user story">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="Google Maps Page Formatting -- adding account page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/map.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/map.css" afterDir="false" />
@@ -171,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727397481192</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Google Maps Page Formatting -- adding account page">
+      <option name="closed" value="true" />
+      <created>1727637009406</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727637009406</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +199,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="signup enhancements" />
     <MESSAGE value="forgotpassword user story" />
-    <option name="LAST_COMMIT_MESSAGE" value="forgotpassword user story" />
+    <MESSAGE value="Google Maps Page Formatting -- adding account page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Google Maps Page Formatting -- adding account page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

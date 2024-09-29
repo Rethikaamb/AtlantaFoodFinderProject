@@ -15,3 +15,9 @@
         .account-button:hover {
             background-color: #4D1F1A;
         }
+
+        /* Flex container to split the screen into two halves */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
