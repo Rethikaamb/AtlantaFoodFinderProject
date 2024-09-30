@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+
 # Create your models here.
 
+from django.db import models
+from django.contrib.auth.models import User
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
@@ -25,3 +27,4 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.restaurant.name}"
+
