@@ -17,7 +17,7 @@ from .models import Favorite
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
-
+from .models import Restaurant
 from home.forms import RestaurantSearchForm
 
 
