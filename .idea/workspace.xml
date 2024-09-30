@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="updates to account/favorites">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="updates to signup function">
+      <change afterPath="$PROJECT_DIR$/home/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +40,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Rethikaamb/AtlantaFoodFinderProject.git&quot;,
-    &quot;accountId&quot;: &quot;0a66d799-a045-4be8-9afb-a20653c0012c&quot;
+    &quot;accountId&quot;: &quot;69b40934-068a-41f0-a080-53989817dc3b&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -55,7 +58,7 @@
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;enya&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vaishnavi&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -85,8 +88,6 @@
       <workItem from="1727200838524" duration="4175000" />
       <workItem from="1727229610095" duration="663000" />
       <workItem from="1727465006456" duration="4344000" />
-      <workItem from="1727650123167" duration="446000" />
-      <workItem from="1727650573624" duration="889000" />
     </task>
     <task id="LOCAL-00001" summary="added Google Maps functionality">
       <option name="closed" value="true" />
@@ -152,55 +153,7 @@
       <option name="project" value="LOCAL" />
       <updated>1727648220093</updated>
     </task>
-    <task id="LOCAL-00009" summary="updates to forgotpassword function">
-      <option name="closed" value="true" />
-      <created>1727648412502</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1727648412502</updated>
-    </task>
-    <task id="LOCAL-00010" summary="updates to forgotpassword function">
-      <option name="closed" value="true" />
-      <created>1727648911581</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1727648911581</updated>
-    </task>
-    <task id="LOCAL-00011" summary="updates to signup function">
-      <option name="closed" value="true" />
-      <created>1727650210636</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1727650210636</updated>
-    </task>
-    <task id="LOCAL-00012" summary="updates to signup function">
-      <option name="closed" value="true" />
-      <created>1727650269049</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1727650269049</updated>
-    </task>
-    <task id="LOCAL-00013" summary="updates to account">
-      <option name="closed" value="true" />
-      <created>1727718633461</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1727718633461</updated>
-    </task>
-    <task id="LOCAL-00014" summary="updates to account/favorites">
-      <option name="closed" value="true" />
-      <created>1727721414391</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1727721414391</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,11 +162,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Google Maps functionality" />
     <MESSAGE value="attempt at favorites" />
-    <MESSAGE value="updates to forgotpassword function" />
     <MESSAGE value="updates to signup function" />
-    <MESSAGE value="updates to account" />
-    <MESSAGE value="updates to account/favorites" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates to account/favorites" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates to signup function" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AtlantaFoodFinder$urls.coverage" NAME="urls Coverage Results" MODIFIED="1727204931902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AtlantaFoodFinder" />
