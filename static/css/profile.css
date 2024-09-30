@@ -54,15 +54,24 @@
 }
 
 .favorites-list {
-    list-style-type: none; /* Removes bullet points */
-    padding: 0;
-    margin: 0;
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 20px 0; /* Add margin for spacing */
 }
 
 .favorites-list li {
-    background: #FEE9D9; /* Light background */
-    border: 1px solid #dee2e6; /* Border color */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px; /* Padding around items */
-    margin: 5px 0; /* Spacing between items */
+    background-color: #FEE9D9; /* Light background for list items */
+    border: 1px solid #ddd; /* Light border around list items */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding for list items */
+    margin-bottom: 10px; /* Space between list items */
+    transition: box-shadow 0.3s; /* Smooth shadow transition */
+}
+
+.favorites-list li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.favorites-list strong {
+    color: #333; /* Darker color for strong text */
 }

@@ -16,23 +16,18 @@
 <div class="container">
     <div class="main-box">
         <h2></h2>
-        <h2 style="text-align: center;">Welcome, {{ user }}!</h2>
-        <p>Hi {{ user.first_name }}! Check out your favorite spots in Atlanta below!</p>
+        <h2 style="text-align: center;">Welcome, {{ user }}</h2>
+        <p>Hi {{ user.first_name }}!</p>
     </div>
-
     <div class="box-container">
         <div class="box">
-            <h3 style="text-align: center">Favorites</h3>
+            <h3 style="text-align: center">Check out your user information below!</h3>
              <ul class="favorites-list">
-                {% for favorite in favorites %}
-                    <li>
-                        <strong>{{ favorite.restaurant.name }}</strong><br>
-                        Address: {{ favorite.restaurant.address }}<br>
-                        Rating: {{ favorite.restaurant.rating }}<br>
-                    </li>
-                {% empty %}
-                    <li>No favorites yet!</li>
-                {% endfor %}
+                <li>
+                    <strong>Firstname: </strong>{{ user.first_name }}<br>
+                   <strong> Lastname: </strong> {{ user.last_name }}<br>
+                    <strong>Email: </strong> {{ user.email }}<br>
+                </li>
             </ul>
         </form>
     

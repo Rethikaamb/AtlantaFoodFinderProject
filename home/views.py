@@ -76,6 +76,7 @@ def signup(request):
             user = User.objects.create_user(username, email, pass1)
             user.first_name = fname
             user.last_name = lname
+            user.email = email
 
             user.save()
 
