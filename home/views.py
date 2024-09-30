@@ -116,6 +116,9 @@ def logout(request):
     user = authenticate(request, username="false", password="false")
     return redirect('home')
 
+
+from django.http import JsonResponse
+
 def map_view(request):
     search_results = []
     form = RestaurantSearchForm()
@@ -124,20 +127,23 @@ def map_view(request):
         form = RestaurantSearchForm(request.POST)
         if form.is_valid():
             query = form.cleaned_data['query']
-            rating_filter = form.cleaned_data.get('rating', 0)
-            distance_filter = form.cleaned_data.get('distance', 20233)
-            print(distance_filter)
+            rating_filter = form.cleaned_data.get('rating', '0')
+            distance_filter = form.cleaned_data.get('distance', '20233')
+
             api_key = settings.GOOGLE_MAPS_API_KEY
-            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location=LATITUDE,LONGITUDE&radius={distance_filter}&key={api_key}"
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location=33.7490,-84.3880&radius={distance_filter}&key={api_key}"
             response = requests.get(url)
-            results = response.json().get('results',[])
-            search_results = [place for place in results if place.get('rating',0) >= int(rating_filter)]
+            results = response.json().get('results', [])
+            search_results = [place for place in results if place.get('rating', 0) >= float(rating_filter)]
+
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'search_results': search_results})
+
     return render(request, 'map.html', {
         'form': form,
         'search_results': search_results,
         'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
     })
-
 def forgotpassword(request):
     if request.method == 'POST':
         username = request.POST.get('username')
