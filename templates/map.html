@@ -41,7 +41,7 @@
            padding: 10px;
            border: 1px solid #ddd;
            border-radius: 4px;
-           background-color: white;
+           background-color: #F0E7D7;
            transition: all 0.3s ease;
        }
        .restaurant-card img {
@@ -52,19 +52,19 @@
            margin-left: 10px;
        }
        .popup {
-           display: none;
-           position: fixed;
-           left: 50%;
-           top: 50%;
-           transform: translate(-50%, -50%);
-           background-color: white;
-           padding: 20px;
-           border-radius: 5px;
-           box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-           z-index: 1000;
-           max-width: 80%;
-           max-height: 80%;
-           overflow-y: auto;
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #F0E7D7;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        max-width: 400px; /* Adjust maximum width here */
+        width: 80%; /* Allow pop-up to take up to 90% of the viewport width */
+        overflow-y: auto;
        }
        .popup-close {
            position: absolute;
@@ -75,7 +75,47 @@
        }
        .popup-content {
            cursor: pointer;
+           padding: 10px;
        }
+
+       .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+       }
+
+        .stars {
+            margin-left: 5px; /* Space between rating text and stars */
+        }
+
+        .star {
+        font-size: 20px; /* Adjust size as needed */
+        }
+
+        .star.filled {
+        color: gold; /* Color for filled stars */
+        }
+
+    .favorite-button {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .favorite-button button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff; /* Blue background */
+        color: white; /* White text */
+        cursor: pointer;
+        font-size: 14px; /* Font size */
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .favorite-button button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
        .highlighted-card {
            border: 2px solid #007bff;
            box-shadow: 0 0 10px rgba(0,123,255,0.5);
@@ -107,6 +147,50 @@
        #favorites li {
            margin-bottom: 5px;
        }
+
+       .favorite-container {
+        margin-top: 20px;
+    }
+
+    .favorite-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #1e347b; /* Color for the title */
+    }
+
+    .favorite-card {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #93a1a1;
+        transition: box-shadow 0.3s;
+    }
+
+    .favorite-card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+    }
+
+    .favorite-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 10px; /* Space between image and text */
+    }
+
+    .favorite-name {
+        flex-grow: 1; /* Takes up remaining space */
+    }
+
+    .favorite-remove {
+        cursor: pointer;
+        color: #dc3545; /* Bootstrap danger color for remove */
+        font-weight: bold;
+        padding-left: 10px;
+    }
    </style>
 
    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places" async defer></script>
@@ -249,57 +333,82 @@
        function showPopup(place) {
            const popup = document.getElementById('popup');
            const isFavorite = favorites.some(fav => fav.id === place.place_id);
+           const starRating = generateStars(place.rating);
            popup.innerHTML = `
                <span class="popup-close" onclick="closePopup()">×</span>
                <div class="popup-content">
-                   <h2>${place.name}</h2>
+                   <h2><u>${place.name}</u></h2>
+                   <div class="rating">
+                        <span>${place.rating ? place.rating.toFixed(1) : 'N/A'} / 5</span>
+                        <div class="stars">${starRating}</div> <!-- Stars displayed here -->
+                   </div>
                    <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
                    <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
-                   <p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>
+                   {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
                    <p><strong>Cuisine:</strong> ${place.types ? place.types.join(', ') : 'N/A'}</p>
-                   <p><a href="${place.url}" target="_blank">View on Google Maps</a></p>
-                   ${isFavorite ?
-                       `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
-                       `<button onclick="addFavorite('${place.place_id}', '${place.name}')">Add to Favorites</button>`
-                   }
+                   <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
+                   <div class ="favorite-button">
+                       ${isFavorite ?
+                   `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
+                   `<button onclick="addFavorite('${place.place_id}', '${place.name}')">Add to Favorites</button>`
+               }
+                    </div>
                </div>
            `;
            popup.style.display = 'block';
 
            // Add click event to the entire popup content
-           popup.querySelector('.popup-content').addEventListener('click', function() {
+           popup.querySelector('.popup-content').addEventListener('click', function () {
                highlightCard(place.place_id);
            });
-       }
 
-       function closePopup() {
-           document.getElementById('popup').style.display = 'none';
-       }
-
-       function highlightCard(placeId) {
-           const cards = document.querySelectorAll('.restaurant-card');
-           let targetCard = null;
-
-           cards.forEach(card => {
-               if (card.getAttribute('data-place-id') === placeId) {
-                   targetCard = card;
-                   card.classList.add('highlighted-card');
-               } else {
-                   card.classList.remove('highlighted-card');
-               }
-           });
-
-           if (targetCard) {
-               const parent = targetCard.parentNode;
-               parent.insertBefore(targetCard, parent.firstChild);
-
-               setTimeout(() => {
-                   targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-               }, 100);
+           function closePopup() {
+               document.getElementById('popup').style.display = 'none';
            }
 
-           closePopup();
+           function highlightCard(placeId) {
+               const cards = document.querySelectorAll('.restaurant-card');
+               let targetCard = null;
+
+               cards.forEach(card => {
+                   if (card.getAttribute('data-place-id') === placeId) {
+                       targetCard = card;
+                       card.classList.add('highlighted-card');
+                   } else {
+                       card.classList.remove('highlighted-card');
+                   }
+               });
+
+               if (targetCard) {
+                   const parent = targetCard.parentNode;
+                   parent.insertBefore(targetCard, parent.firstChild);
+
+                   setTimeout(() => {
+                       targetCard.scrollIntoView({behavior: 'smooth', block: 'start'});
+                   }, 100);
+               }
+    
+                   closePopup();
+               }
        }
+       
+       // Move the closePopup function outside
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+       function generateStars(rating) {
+            const totalStars = 5;
+            let starsHTML = '';
+
+            const starRating = Math.max(0, Math.min(totalStars, Math.round(rating))); // Adjusting to ensure proper star count
+
+            for (let i = 1; i <= totalStars; i++) {
+                starsHTML += i <= starRating ? '<span class="star filled">★</span>' : '<span class="star">☆</span>'; // Filled or empty star
+            }
+
+            return starsHTML;
+        }
 
        function addFavorite(restaurantId, restaurantName) {
            if (!favorites.some(fav => fav.id === restaurantId)) {
@@ -360,20 +469,59 @@
        }
 
        function updateFavoritesUI() {
-           const favoritesContainer = document.getElementById('favorites');
-           favoritesContainer.innerHTML = '';
+    const favoritesContainer = document.getElementById('favorites');
+    favoritesContainer.innerHTML = '';
 
-           if (favorites.length === 0) {
-               favoritesContainer.innerHTML = '<li>No favorites added.</li>';
-               return;
-           }
+    if (favorites.length === 0) {
+        favoritesContainer.innerHTML = '<li>No favorites added.</li>';
+        return;
+    }
 
-           favorites.forEach(fav => {
-               const listItem = document.createElement('li');
-               listItem.textContent = fav.name;
-               favoritesContainer.appendChild(listItem);
-           });
-       }
+    favorites.forEach(fav => {
+        // Fetch place details for each favorite
+        service.getDetails({ placeId: fav.id }, function(placeDetails, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                const listItem = document.createElement('li');
+                listItem.className = 'favorite-card';
+
+                const img = document.createElement('img');
+                img.className = 'favorite-image';
+                img.src = placeDetails.photos && placeDetails.photos.length > 0 ? placeDetails.photos[0].getUrl() : '/api/placeholder/80/80';
+
+                const name = document.createElement('span');
+                name.className = 'favorite-name';
+                name.textContent = placeDetails.name; // Use place name from details
+
+                const removeButton = document.createElement('span');
+                removeButton.className = 'favorite-remove';
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = () => removeFavorite(fav.id);
+
+                listItem.appendChild(img);
+                listItem.appendChild(name);
+                listItem.appendChild(removeButton);
+
+                favoritesContainer.appendChild(listItem);
+            }
+        });
+    });
+}
+
+
+       {#function updateFavoritesUI() {#}
+       {#    const favoritesContainer = document.getElementById('favorites');#}
+       {#    favoritesContainer.innerHTML = '';#}
+       {##}
+       {#    if (favorites.length === 0) {#}
+       {#        favoritesContainer.innerHTML = '<li>No favorites added.</li>';#}
+       {#        return;#}
+       {#    }#}
+       {##}
+       {#    favorites.forEach(fav => {#}
+       {#        const listItem = document.createElement('li');#}
+       {#        listItem.textContent = fav.name;#}
+       {#        favoritesContainer.appendChild(listItem);#}
+       {#    });#}
 
        function getCookie(name) {
            let cookieValue = null;
@@ -408,8 +556,10 @@
     <div class="search-panel">
         <input type="text" id="search-input" class="search-input" placeholder="Search for restaurants...">
         <div id="restaurant-list"></div>
-        <h2>Your Favorites:</h2>
-        <ul id="favorites"></ul>
+        <div class="favorite-container">
+            <h2 class="favorite-title">Your Favorites:</h2>
+            <ul id="favorites"></ul>
+        </div>
     </div>
 </div>
 
