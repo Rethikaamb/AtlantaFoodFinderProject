@@ -15,5 +15,5 @@ urlpatterns = [
     path('api/favorites/remove/<int:restaurant_id>/', views.remove_favorite, name='remove_favorite'),
 
     path('api/restaurants/favorites/', views.get_favorite_restaurants, name='get_favorite_restaurants'),
-
+    path('account', views.account, name='account')
 ]
