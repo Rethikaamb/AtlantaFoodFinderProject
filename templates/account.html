@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale+1.0">
+    <title>Profile</title>
+        {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="account-button-container">
+    <a href="{% url 'login' %}" class="account-button">Return to Login</a>
+    <a href="{% url 'map_view' %}" class="account-button">Return to Finder</a>
+</div>
+<div class="container">
+    <div class="main-box">
+        <h2></h2>
+        <h2 style="text-align: center;">Welcome, {{ user }}!</h2>
+        <p>View your Atlanta Preferences.</p>
+    </div>
+
+    <div class="box-container">
+        <div class="box">
+            <h3 style="text-align: center">Favorites</h3>
+            <p>Content (smaller favorites boxes with clickable links)</p>
+            <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Favorite Name" required>
+            <input type="text" name="description" placeholder="Favorite Description" required>
+            <button type="submit">Add Favorite</button>
+        </form>
+    
+{#    <div class="favorites-container" id="favoritesContainer">#}
+{#        {% for favorite in favorites %}#}
+{#            <div class="favorites-box">#}
+{#                <h4 style="text-align: center;">{{ favorite.name }}</h4>#}
+{#                <p>{{ favorite.description }}</p>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#            <div class="favorites-container" id="favoritesContainer">#}
+{#            <!-- New favorites boxes will be added here -->#}
+{#            </div>#}
+{#        <button id="addFavorite">Add Favorite</button>#}
+{#        </div>#}
+        </div>
+    </div>
+</div>
+{#<script>#}
+{#        document.getElementById('addFavorite').addEventListener('click', function() {#}
+{#            const container = document.getElementById('favoritesContainer');#}
+{#            const newBox = document.createElement('div');#}
+{#            newBox.className = 'favorites-box';#}
+{#            // You can customize the content or make it dynamic#}
+{#            newBox.innerHTML = `#}
+{#                <h4 style="text-align: center;">Favorite ${container.children.length + 1}</h4>#}
+{#                <p>Favorites description ${container.children.length + 1}</p>#}
+{#            `;#}
+{#            container.appendChild(newBox);#}
+{#        });#}
+{#    </script>#}
+</body>
+</html>

@@ -8,5 +8,7 @@ urlpatterns = [
     path('logout', views.logout, name="logout"),
 
     path('map/', views.map_view, name='map_view'),
-    path('forgotpassword', views.forgotpassword, name='forgotpassword')
+    path('forgotpassword', views.forgotpassword, name='forgotpassword'),
+    path('account', views.account, name='account')
+
 ]

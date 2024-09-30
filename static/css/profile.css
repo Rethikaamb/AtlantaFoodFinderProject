@@ -1,0 +1,55 @@
+    .account-button-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        margin-bottom: 20px;
+    }
+    .account-button {
+        padding: 10px 15px;
+        background-color: #8C4B3C;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .account-button:hover {
+        background-color: #4D1F1A;
+    }
+   body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #FFF6E5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 600px;
+        margin: 60px auto; /* Center the container */
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-box {
+    text-align: center; /* Center content in the main box */
+    margin-bottom: 20px; /* Space below the main box */
+
+}
+
+.box-container {
+    display: flex; /* Align boxes in a row */
+    justify-content: space-between; /* Space out the boxes */
+    background: #FEE9D9;
+}
+
+.box {
+    flex: 1; /* Each box takes equal width */
+    padding: 10px;
+    margin: 5px; /* Space around boxes */
+    background: #FAB3A9; /* Light background */
+    border-radius: 5px;
+}
+

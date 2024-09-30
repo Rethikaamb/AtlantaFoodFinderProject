@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}">
    <title>Google Maps Integration</title>
    {% load static %}
    <link rel="stylesheet" type="text/css" href="{% static 'css/map.css' %}">
@@ -24,8 +26,7 @@
            padding: 20px;
            background-color: #f4f4f4;
        }
-
-
+       
        /* Basic styling for the search panel content */
        .search-panel h3, .search-panel h4 {
            margin-top: 0;
@@ -78,7 +79,6 @@
                     userMarker.addListener('click', function() {
                     infoWindow.open(map, userMarker);
                     });
-
                   
                    fetchNearbyRestaurants(pos)
                }, function() {
@@ -103,7 +103,7 @@
        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
            infoWindow.setPosition(pos);
            infoWindow.setContent(browserHasGeolocation ?
-               'Error: The Geolocation service failed.' :
+               'Error: The Geolocation service failed. Make sure location services are not blocked.' :
                'Error: Your browser doesn\'t support geolocation.');
            infoWindow.open(map);
        }
@@ -149,11 +149,14 @@
    </script>
 </head>
 <body onload="initMap()">
-   <div class="container">
+<!-- EP: button to go to profile -->
+<div class="account-button-container">
+    <a href="{% url 'account' %}" class="account-button">View my Profile</a>
+</div>
+<!-- EP: because not having a div ruined the formatting when adding a button -->
+<div class = 'container'>
        <!-- Left side for Google Map -->
        <div id="map"></div>
-
-
        <!-- Right side for search or other content -->
        <div class="search-panel">
            <h1>Search for Restaurants</h1>
@@ -177,7 +180,7 @@
     {% if search_results %}
         <h2>Search Results:</h2>
         {% for result in search_results %}
-            <li>{{ result.name }} - {{ result.formatted_address }}</li>
+            <li>{{ result.name }} - {{ result.formatted_address }} - Rating: {{ result.rating }}</li>
         {% endfor %}
     {% endif %}
 </ul>
