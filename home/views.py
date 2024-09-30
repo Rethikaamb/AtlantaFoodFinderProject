@@ -13,6 +13,9 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from .models import Favorite
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import get_object_or_404
 
 from home.forms import RestaurantSearchForm
@@ -159,5 +162,15 @@ def forgotpassword(request):
 
 
 def account(request):
-    return render(request, 'account.html')
+    if request.user.is_authenticated:
+        favorites = Favorite.objects.filter(user=request.user)
+    else:
+        favorites = []
 
+    return render(request, "account.html", {"favorites": favorites})
+
+def add_favorite(request, restaurant_id):
+    if request.method == "POST" and request.user.is_authenticated:
+        restaurant = Restaurant.objects.get(id=restaurant_id)
+        Favorite.objects.get_or_create(user=request.user, restaurant=restaurant)
+        return HttpResponseRedirect(reverse('account'))  # Redirect to account page

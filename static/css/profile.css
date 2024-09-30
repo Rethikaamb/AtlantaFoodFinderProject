@@ -53,3 +53,16 @@
     border-radius: 5px;
 }
 
+.favorites-list {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.favorites-list li {
+    background: #FEE9D9; /* Light background */
+    border: 1px solid #dee2e6; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around items */
+    margin: 5px 0; /* Spacing between items */
+}
