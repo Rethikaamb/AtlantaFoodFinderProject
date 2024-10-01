@@ -326,17 +326,14 @@ var infoWindow = new google.maps.InfoWindow({
 
         function searchRestaurants() {
             clearMarkers();
-
+        
             getUserLocation().then(userLocation => {
-                // Get the form data
                 var form = document.getElementById('search-form');
                 var formData = new FormData(form);
-
-                // Add user location to form data
+        
                 formData.append('user_lat', userLocation.lat);
                 formData.append('user_lng', userLocation.lng);
-
-                // Send a POST request to the backend
+        
                 fetch('/map/', {
                     method: 'POST',
                     body: formData,
@@ -347,10 +344,13 @@ var infoWindow = new google.maps.InfoWindow({
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log('Received data:', data);  // Log the entire response
                     if (data.search_results) {
-                        for (var i = 0; i < data.search_results.length; i++) {
-                            createMarker(data.search_results[i]);
-                        }
+                        console.log('Search results:', data.search_results);  // Log the search results
+                        data.search_results.forEach(place => {
+                            console.log('Place:', place);  // Log each place
+                            createMarker(place);
+                        });
                         populateRestaurantCards(data.search_results);
                     } else {
                         console.error('No search results returned from the server');
@@ -425,37 +425,39 @@ var infoWindow = new google.maps.InfoWindow({
         function populateRestaurantCards(results) {
             const restaurantList = document.getElementById('restaurant-list');
             const template = document.getElementById('restaurant-card-template');
-
-            // Clear existing restaurant cards
+        
             restaurantList.innerHTML = '';
-
+        
             results.forEach(place => {
                 const card = template.content.cloneNode(true);
                 const cardElement = card.querySelector('.restaurant-card');
-
+        
                 cardElement.setAttribute('data-place-id', place.place_id);
                 cardElement.querySelector('.restaurant-name').textContent = place.name;
                 cardElement.querySelector('.restaurant-rating').textContent = `${place.rating || 'N/A'} ★`;
                 cardElement.querySelector('.restaurant-address').textContent = place.vicinity || place.formatted_address || 'Address not available';
                 cardElement.querySelector('.restaurant-description').textContent = place.types ? place.types.join(', ') : 'No description available';
-
-                // Set the image source
+        
                 const imgElement = cardElement.querySelector('img');
-                if (place.photos && place.photos.length > 0 && place.photos[0].getUrl) {
+                if (place.photos && place.photos.length > 0 && typeof place.photos[0].getUrl === 'function') {
                     imgElement.src = place.photos[0].getUrl();
+                } else if (place.photos && place.photos.length > 0 && place.photos[0].photo_reference) {
+                    imgElement.src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key={{ google_maps_api_key }}`;
+                } else if (place.photo_reference) {
+                    imgElement.src = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photo_reference}&key={{ google_maps_api_key }}`;
                 } else {
-                    imgElement.src = '/api/placeholder/80/80'; // fallback image
+                    imgElement.src = 'https://via.placeholder.com/150?text=No+Image';
                 }
-
+        
                 cardElement.addEventListener('click', function() {
                     getPlaceDetails(place, function(placeDetails) {
                         showPopup(placeDetails);
                     });
                 });
-
+        
                 restaurantList.appendChild(cardElement);
             });
-
+        
             if (results.length === 0) {
                 restaurantList.innerHTML = '<p>No restaurants found.</p>';
             }
@@ -680,11 +682,10 @@ var infoWindow = new google.maps.InfoWindow({
     <div class="search-panel">
         <form id="search-form" method="post">
             {% csrf_token %}
+
             <div class="form-group">
-                <input type="text" name="query" class="search-input" placeholder="Search for restaurants..." value="{{ form.query.value|default:'' }}" aria-label="Search for restaurants">
-{#                <input type="text" id="{{ form.query.id_for_label }}" class="search-input" placeholder="Search for restaurants..." value="{{ form.query.value }}" aria-label="Search for restaurants">#}
-{#                <button class="searching-button">Search</button>#}
-            </div>
+            <input type="text" name="query" id="search-input" class="search-input" placeholder="Search for restaurants..." value="{{ form.query.value|default:'' }}" aria-label="Search for restaurants" onkeypress="if(event.key === 'Enter') { event.preventDefault(); searchRestaurants(); }">
+        </div>
             <div class="form-group">
                 <label for="{{ form.rating.id_for_label }}">Minimum Rating:</label>
                 {{ form.rating }}

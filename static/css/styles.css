@@ -1,41 +1,35 @@
 /* General Page Styles */
 body {
-   font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
     background-color: #EEE0D7;
     background-image:
         url("images/imageone23400.png"),
         url("images/Atlanta_Poster__Atlanta_Georgia_Print__Atlanta_GA_Skyline_Wall_Art_cityscape__Atlanta_photography_Minimalist_Custom_City_Print_by_Artica-removebg-preview 2.png");
-
-    background-size: auto 130%, auto 120%; /* Adjust the height based on viewport, width auto */
-    background-attachment: fixed, fixed; /* Fix the first image, allow the second to scroll */
-    background-repeat: no-repeat, no-repeat; /* First image does not repeat, second image repeats */
-    background-position: .4% 100%, 100% 0%; /* Set positions for each image */
-
-
+    background-size: auto 130%, auto 120%;
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
+    background-position: .4% 100%, 100% 0%;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* Alert base style */
 .alert {
-    margin: 0;
+    margin: 0 auto 20px;
     border-radius: 5px;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     color: white;
     width: 90%;
-    margin-top: -30px;
-
-    margin-left: 10px;
     max-width: 600px;
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 1;  /* Initial opacity */
-    transition: opacity 0.5s ease; /* Smooth transition */
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 
 /* Different alert background colors */
@@ -57,14 +51,13 @@ body {
 
 /* Fade-out class for alerts */
 .alert.fade-out {
-    opacity: 0; /* Makes the alert transparent */
+    opacity: 0;
 }
 
 /* Optional: Remove alert after it fades out */
 .hidden {
     display: none;
 }
-
 
 /* Keyframes for the fade-in effect */
 @keyframes fadeIn {
@@ -74,171 +67,188 @@ body {
 
 /* Specific style for the "Forgot Password?" link */
 .para-2 a {
-    color: #D4B8A0; /* Change to your desired color */
-    text-decoration: none; /* Remove underline */
-
+    color: #D4B8A0;
+    text-decoration: none;
 }
 
 .para-2 a:hover {
-    color: #D4B8A0; /* Change hover color if needed */
-    text-decoration: underline; /* Optional: Add underline on hover */
-
-
+    color: #D4B8A0;
+    text-decoration: underline;
 }
+
 .login-form label {
-    display: block;             /* Make the labels block elements */
-    font-weight: lighter;       /* Light font weight */
-    margin-bottom: 5px;         /* Space below the label */
-    color: #FFF6E5;             /* Label text color */
-   font-family: "Montserrat", sans-serif;
-    font-size: 15px;            /* Adjust font size */
-    text-align: left;           /* Align the text to the left */
+    display: block;
+    font-weight: lighter;
+    margin-bottom: 5px;
+    color: #FFF6E5;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    text-align: left;
 }
-
 
 /* Styling for input fields to appear as lines */
 .login-input {
-    width: 100%;                /* Full width */
-    padding: 7px;               /* Padding inside the input */
-    margin-top: 1px;            /* Space above the input */
-
-    margin-bottom: 15px;        /* Space below the input */
-    background-color: transparent;  /* Transparent background */
-    border: none;               /* Remove border */
-    border-bottom: 2px solid #4D1F1A; /* Add only a bottom border to create the line */
-    font-size: 16px;            /* Larger font size */
+    width: 100%;
+    padding: 7px;
+    margin-top: 1px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #4D1F1A;
+    font-size: 16px;
     font-family: "Montserrat", sans-serif;
-    color: #FFF6E5;               /* Text color */
+    color: #FFF6E5;
 }
 
 .login-input::placeholder {
-    color: #FFF6E5;             /* Placeholder text color */
+    color: #FFF6E5;
     font-size: 16px;
-    opacity: 0.6;               /* Slight transparency for the placeholder */
-
-
+    opacity: 0.6;
 }
 
 /* Add focus effect for the input fields */
 .login-input:focus {
-    outline: none;              /* Remove the default outline */
+    outline: none;
     color: #FFF6E5;
-    border-bottom: 2px solid #FFF6E5; /* Change border color on focus */
+    border-bottom: 2px solid #FFF6E5;
 }
-
 
 .login-button {
-    background-color: black; /* Green background */
-    color: white;              /* White text */
-    border: none;              /* No border */
-
-    margin-top: -10px;
+    background-color: black;
+    color: white;
+    border: none;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 80%;
-    padding: 9px 10px;       /* Some padding */
-    text-align: center;        /* Centered text */
-    text-decoration: none;     /* No underline */
-    display: inline-block;     /* Display as inline-block */
-    font-size: 14px;          /* Larger text */
-    cursor: pointer;           /* Pointer cursor on hover */
-    border-radius: 10px;       /* Rounded corners */
-   font-family: "Montserrat", sans-serif;
-
-
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-h9{
+h9 {
     color: #FFF6E5;
     opacity: .8;
 }
 
-
 .login-button:hover {
-    background-color: #FFF6E5; /* Darker green on hover */
-    color: black;             /* Change text color on hover (gold in this case) */
-
+    background-color: #FFF6E5;
+    color: black;
 }
 
 p {
-    text-align: right; /* Center align */
+    text-align: right;
     margin-left: 10px;
-    font-size: 13px; /* Font size */
+    font-size: 13px;
     margin-top: -5px;
     margin-bottom: 20px;
     color: black;
 }
 
-
 button {
-    border: none;              /* No border */
-    background-color: #4D1F1A; /* Green background */
+    border: none;
+    background-color: #4D1F1A;
     width: 80%;
-    text-align: center;        /* Centered text */
-    text-decoration: none;     /* No underline */
-    display: inline-block;     /* Display as inline-block */
-    font-size: 14px;          /* Larger text */
-    margin: 4px 2px;          /* Small margin */
-    cursor: pointer;           /* Pointer cursor on hover */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
     margin-top: 3%;
-    border-radius: 10px;       /* Rounded corners */
+    border-radius: 10px;
     text-align: center;
     text-transform: uppercase;
     transition: background-color 0.3s ease;
 }
 
 button a {
-
-    display: block; /* Make the anchor tag a block-level element */
-    width: 100%; /* Ensure it takes up the full width of the button */
-    height: 100%; /* Ensure it takes up the full height of the button */
+    display: block;
+    width: 100%;
+    height: 100%;
     color: white;
     text-decoration: none;
-
-    padding: 8px 0; /* Optional, to make the text align well vertically */
-   font-family: "Montserrat", sans-serif;
+    padding: 12px 0;
+    font-family: "Montserrat", sans-serif;
 }
+
 button:hover a {
-    color: black;  /* Change text color to gold (or any color you prefer) */
+    color: black;
 }
 
 button:hover {
-    background-color: #FFF6E5; /* Darker shade on hover */
+    background-color: #FFF6E5;
 }
 
 /* Centering the form content */
 .container {
     background: #5F3830;
-    padding: 50px;
-
-    opacity: 96%; /* Makes the entire container, including text, 80% opaque */
+    padding: 40px;
+    opacity: 0.96;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Adding a darker border */
-    border: 11px solid #4D1F1A; /* Darker shade of the background color */
+    border: 11px solid #4D1F1A;
     max-width: 400px;
-    width: 100%;
-    height: 40%;
+    width: 90%;
+    margin: 20px;
     text-align: center;
 }
-
-
 
 h3.welcome {
     margin-bottom: 20px;
     font-size: 24px;
-
     font-weight: bold;
     color: #FFF6E5;
     position: relative;
-    top: -20px; /* Move it up a bit */
+    top: -10px;
 }
 
-
-
-
-/* Responsive design for mobile screens */
-@media screen and (max-width: 600px) {
+/* Responsive design */
+@media screen and (max-width: 768px) {
     body {
+        background-size: 100% auto, 100% auto;
+        background-position: bottom left, top right;
+    }
+
+    .container {
+        padding: 30px;
+        max-width: 90%;
+        margin: 10px;
+    }
+
+    h3.welcome {
+        font-size: 20px;
+    }
+
+    .login-input, .login-button, button {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background-size: 150% auto, 150% auto;
+    }
+
+    .container {
         padding: 20px;
+        border-width: 8px;
+    }
+
+    h3.welcome {
+        font-size: 18px;
+    }
+
+    .login-input, .login-button, button {
+        font-size: 12px;
+    }
+
+    .alert {
+        font-size: 14px;
     }
 }

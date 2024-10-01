@@ -119,6 +119,8 @@ def logout(request):
 
 from django.http import JsonResponse
 
+from django.http import JsonResponse
+
 def map_view(request):
     search_results = []
     form = RestaurantSearchForm()
@@ -128,13 +130,29 @@ def map_view(request):
         if form.is_valid():
             query = form.cleaned_data['query']
             rating_filter = form.cleaned_data.get('rating', '0')
-            distance_filter = form.cleaned_data.get('distance', '20233')
+            distance_filter = int(form.cleaned_data.get('distance', '20233'))
+            user_lat = float(request.POST.get('user_lat'))
+            user_lng = float(request.POST.get('user_lng'))
 
             api_key = settings.GOOGLE_MAPS_API_KEY
-            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location=33.7490,-84.3880&radius={distance_filter}&key={api_key}"
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location={user_lat},{user_lng}&radius={distance_filter}&key={api_key}"
             response = requests.get(url)
             results = response.json().get('results', [])
-            search_results = [place for place in results if place.get('rating', 0) >= float(rating_filter)]
+
+            search_results = []
+            for place in results:
+                if place.get('rating', 0) >= float(rating_filter):
+                    place_data = {
+                        'place_id': place['place_id'],
+                        'name': place['name'],
+                        'vicinity': place.get('vicinity', ''),
+                        'rating': place.get('rating', 'N/A'),
+                        'types': place.get('types', []),
+                        'geometry': place['geometry'],
+                    }
+                    if 'photos' in place and place['photos']:
+                        place_data['photo_reference'] = place['photos'][0]['photo_reference']
+                    search_results.append(place_data)
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return JsonResponse({'search_results': search_results})
