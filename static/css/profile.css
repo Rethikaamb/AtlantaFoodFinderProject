@@ -44,12 +44,14 @@
     justify-content: space-between; /* Space out the boxes */
     background: #FEE9D9;
 }
-
+.h2{
+    color: #FFF6E5;
+}
 .box {
     flex: 1; /* Each box takes equal width */
     padding: 10px;
     margin: 5px; /* Space around boxes */
-    background: #FAB3A9; /* Light background */
+    background: #5F3830; /* Light background */
     border-radius: 5px;
 }
 
