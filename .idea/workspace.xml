@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="New Branch">
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="New Branch with backend favorite updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727811851430</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New Branch with backend favorite updates">
+      <option name="closed" value="true" />
+      <created>1727812597664</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727812597664</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +228,8 @@
     <MESSAGE value="changed color in account info" />
     <MESSAGE value="small changes to map html" />
     <MESSAGE value="New Branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Branch" />
+    <MESSAGE value="New Branch with backend favorite updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="New Branch with backend favorite updates" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AtlantaFoodFinder$urls.coverage" NAME="urls Coverage Results" MODIFIED="1727204931902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AtlantaFoodFinder" />

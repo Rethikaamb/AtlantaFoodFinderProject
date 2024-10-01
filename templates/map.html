@@ -538,6 +538,9 @@ var infoWindow = new google.maps.InfoWindow({
            const popup = document.getElementById('popup');
            const isFavorite = favorites.some(fav => fav.id === place.place_id);
            const starRating = generateStars(place.rating);
+           
+           name = place.name.replace("'", "&lsquo,");
+           
            popup.innerHTML = `
                <span class="popup-close" onclick="closePopup()">×</span>
                <div class="popup-content">
@@ -554,7 +557,7 @@ var infoWindow = new google.maps.InfoWindow({
                    <div class ="favorite-button">
                        ${isFavorite ?
                    `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
-                   `<button onclick="addFavorite('${place.place_id}', '${place.name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
+                   `<button onclick="addFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
                }
                     </div>
                </div>
