@@ -18,13 +18,9 @@ class Restaurant(models.Model):
         return self.name
 
 class Favorite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    restaurantID = models.CharField(max_length=255, default='0')
 
-    class Meta:
-        unique_together = ('user', 'restaurant')  # Ensures each user can favorite a restaurant only once
 
     def __str__(self):
-        return f"{self.user.username} - {self.restaurant.name}"
-
+        return f"{self.user.username} - {self.restaurantID}"

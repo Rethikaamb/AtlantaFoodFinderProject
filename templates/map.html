@@ -13,7 +13,6 @@
            font-family: Arial, sans-serif;
        }
 
-
        .container {
            display: flex;
            height: calc(100% - 60px);
@@ -29,7 +28,6 @@
            padding: 20px;
            box-sizing: border-box;
            background-color: #5F3830;
-
        }
        .search-input {
            width: 100%;
@@ -132,7 +130,6 @@
            border-radius: 5px; /* Rounded corners */
 
        }
-
        .user-controls a {
            padding: 5px 10px;
            background-color: black;
@@ -205,8 +202,7 @@
     .form-group {
         margin-bottom: 15px;
         color: white;
-
-}
+    }
 
 .form-label {
     display: block;
@@ -245,7 +241,60 @@
 }
    </style>
 
-   <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places" async defer></script>
+   
+</head>
+<body onload="initMap()">
+<header class="header">
+    <h1>Restaurant Finder</h1>
+{#    <div class="user-greeting">#}
+{#        <span>Hello, {{ fname }}</span>#}
+{#    </div>#}
+    <div class="user-controls">
+        <a href="{% url 'account' %}" class="account-button">View my Profile</a>
+        <a href="{% url 'logout' %}" class="logout-button">Log Out</a>
+    </div>
+</header>
+
+<div class="container">
+    <div id="map"></div>
+    <div class="search-panel">
+        <form id="search-form" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+            <input type="text" name="query" id="search-input" class="search-input" placeholder="Search for restaurants..." value="{{ form.query.value|default:'' }}" aria-label="Search for restaurants" onkeypress="if(event.key === 'Enter') { event.preventDefault(); searchRestaurants(); }">
+        </div>
+            <div class="form-group">
+                <label for="{{ form.rating.id_for_label }}">Minimum Rating:</label>
+                {{ form.rating }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.distance.id_for_label }}">Maximum Distance:</label>
+                {{ form.distance }}
+            </div>
+            <button class= "searching-button" type="button" onclick="searchRestaurants()">Search</button>
+        </form>
+        <div id="restaurant-list"></div>
+        <div class="favorite-container">
+            <h2 class="favorite-title">Your Favorites:</h2>
+            <ul id="favorites"></ul>
+        </div>
+    </div>
+</div>
+
+<template id="restaurant-card-template">
+    <div class="restaurant-card">
+        <img src="" alt="Restaurant Image">
+        <div class="restaurant-name"></div>
+        <div class="restaurant-rating"></div>
+        <div class="restaurant-address"></div>
+        <div class="restaurant-description"></div>
+    </div>
+</template>
+
+<div id="popup" class="popup"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places" async defer></script>
    <script type="text/javascript">
        let map;
        let service;
@@ -380,19 +429,20 @@ var infoWindow = new google.maps.InfoWindow({
         }
         // Function to get CSRF token
         function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
-            return cookieValue;
         }
+    }
+    return cookieValue;
+}
                function createMarker(place) {
            var marker = new google.maps.Marker({
                map: map,
@@ -481,8 +531,10 @@ var infoWindow = new google.maps.InfoWindow({
                }
            });
        }
-
+       
+       
        function showPopup(place) {
+           loadFavorites();
            const popup = document.getElementById('popup');
            const isFavorite = favorites.some(fav => fav.id === place.place_id);
            const starRating = generateStars(place.rating);
@@ -502,7 +554,7 @@ var infoWindow = new google.maps.InfoWindow({
                    <div class ="favorite-button">
                        ${isFavorite ?
                    `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
-                   `<button onclick="addFavorite('${place.place_id}', '${place.name}')">Add to Favorites</button>`
+                   `<button onclick="addFavorite('${place.place_id}', '${place.name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
                }
                     </div>
                </div>
@@ -562,7 +614,7 @@ var infoWindow = new google.maps.InfoWindow({
             return starsHTML;
         }
 
-       function addFavorite(restaurantId, restaurantName) {
+       function addFavorite(restaurantId, restaurantName, restaurantAddress, restaurantLatitude, restaurantLongitude, restaurantRating, restaurantType) {
            if (!favorites.some(fav => fav.id === restaurantId)) {
                favorites.push({ id: restaurantId, name: restaurantName });
                updateFavoritesUI();
@@ -570,13 +622,13 @@ var infoWindow = new google.maps.InfoWindow({
            }
 
            fetch('/api/favorites/add/', {
-               method: 'POST',
-               headers: {
-                   'Content-Type': 'application/json',
-                   'X-CSRFToken': getCookie('csrftoken')
-               },
-               body: JSON.stringify({ restaurant_id: restaurantId })
-           })
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')  // Ensure this is correctly retrieved
+    },
+    body: JSON.stringify({ restaurant_id: restaurantId, restaurant_name: restaurantName, restaurant_address: restaurantAddress, restaurant_latitude : restaurantLatitude, restaurant_longitude : restaurantLongitude })
+})
            .then(response => response.json())
            .then(data => {
                console.log(data.message);
@@ -611,15 +663,24 @@ var infoWindow = new google.maps.InfoWindow({
        }
 
        function loadFavorites() {
-           const savedFavorites = localStorage.getItem('favorites');
-           if (savedFavorites) {
-               favorites = JSON.parse(savedFavorites);
-           } else {
-               favorites = [];
-           }
-           updateFavoritesUI();
-       }
-
+    fetch('/api/favorites/list/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Fetched favorites:', data);  // Log the data fetched from the server
+        favorites = data.map(fav => ({ id: fav.restaurant.id, name: fav.restaurant.name }));
+        console.log('Parsed favorites:', favorites);  // Log parsed favorites list
+        updateFavoritesUI();
+    })
+    .catch(error => {
+        console.error('Error loading favorites:', error);
+    });
+}
        function updateFavoritesUI() {
     const favoritesContainer = document.getElementById('favorites');
     favoritesContainer.innerHTML = '';
@@ -676,57 +737,5 @@ var infoWindow = new google.maps.InfoWindow({
        {#    });#}
 
    </script>
-</head>
-<body onload="initMap()">
-<header class="header">
-    <h1>Restaurant Finder</h1>
-{#    <div class="user-greeting">#}
-{#        <span>Hello, {{ fname }}</span>#}
-{#    </div>#}
-    <div class="user-controls">
-        <a href="{% url 'account' %}" class="account-button">View my Profile</a>
-        <a href="{% url 'logout' %}" class="logout-button">Log Out</a>
-    </div>
-</header>
-
-<div class="container">
-    <div id="map"></div>
-    <div class="search-panel">
-        <form id="search-form" method="post">
-            {% csrf_token %}
-
-            <div class="form-group">
-            <input type="text" name="query" id="search-input" class="search-input" placeholder="Search for restaurants..." value="{{ form.query.value|default:'' }}" aria-label="Search for restaurants" onkeypress="if(event.key === 'Enter') { event.preventDefault(); searchRestaurants(); }">
-        </div>
-            <div class="form-group">
-                <label for="{{ form.rating.id_for_label }}">Minimum Rating:</label>
-                {{ form.rating }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.distance.id_for_label }}">Maximum Distance:</label>
-                {{ form.distance }}
-            </div>
-            <button class= "searching-button" type="button" onclick="searchRestaurants()">Search</button>
-        </form>
-        <div id="restaurant-list"></div>
-        <div class="favorite-container">
-            <h2 class="favorite-title">Your Favorites:</h2>
-            <ul id="favorites"></ul>
-        </div>
-    </div>
-</div>
-
-<template id="restaurant-card-template">
-    <div class="restaurant-card">
-        <img src="" alt="Restaurant Image">
-        <div class="restaurant-name"></div>
-        <div class="restaurant-rating"></div>
-        <div class="restaurant-address"></div>
-        <div class="restaurant-description"></div>
-    </div>
-</template>
-
-<div id="popup" class="popup"></div>
-
 </body>
 </html>

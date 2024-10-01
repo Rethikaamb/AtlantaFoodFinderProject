@@ -23,7 +23,7 @@ from home.forms import RestaurantSearchForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Favorite, Restaurant
+from .models import Favorite, Restaurant, User
 from .serializers import FavoriteSerializer, RestaurantSerializer
 
 
@@ -79,6 +79,9 @@ def signup(request):
             user.email = email
 
             user.save()
+            emptyarray = []
+            fav = Favorite.objects.create(username=user.username, favorites=emptyarray)
+            fav.save()
 
             messages.success(request, "Account successfully created")
 
@@ -197,18 +200,10 @@ def add_favorite(request):
     if request.user.is_authenticated:
         user = request.user
         restaurant_id = request.data.get('restaurant_id')
+        Favorite.objects.create(user=user, restaurantID=restaurant_id)
+        print("userinfo: " + str(Favorite.objects.filter(user=user)))
+    return JsonResponse({'success': True})
 
-        try:
-            restaurant = Restaurant.objects.get(id=restaurant_id)
-            favorite, created = Favorite.objects.get_or_create(user=user, restaurant=restaurant)
-            if created:
-                return Response({"message": "Restaurant added to favorites"}, status=status.HTTP_201_CREATED)
-            else:
-                return Response({"message": "Restaurant is already in favorites"}, status=status.HTTP_200_OK)
-        except Restaurant.DoesNotExist:
-            return Response({"error": "Restaurant does not exist"}, status=status.HTTP_404_NOT_FOUND)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
 # Remove a restaurant from favorites
 @api_view(['DELETE'])
 def remove_favorite(request, restaurant_id):
@@ -226,13 +221,7 @@ def remove_favorite(request, restaurant_id):
 # List all favorite restaurants for the logged-in user
 @api_view(['GET'])
 def list_favorites(request):
-    if request.user.is_authenticated:
-        user = request.user
-        favorites = Favorite.objects.filter(user=user)
-        serializer = FavoriteSerializer(favorites, many=True)
-        return Response(serializer.data)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+    return Response({"error": "Authentication required"}, status=401)
 
 
 # Get only the favorite restaurants for the logged-in user
@@ -266,9 +255,3 @@ def account(request):
         favorites = []
 
     return render(request, "account.html", {"favorites": favorites})
-
-def add_favorite(request, restaurant_id):
-    if request.method == "POST" and request.user.is_authenticated:
-        restaurant = Restaurant.objects.get(id=restaurant_id)
-        Favorite.objects.get_or_create(user=request.user, restaurant=restaurant)
-        return HttpResponseRedirect(reverse('account'))  # Redirect to account page

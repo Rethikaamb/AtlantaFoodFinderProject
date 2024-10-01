@@ -30,6 +30,10 @@ EMAIL_PORT = EMAIL_PORT
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Ensure sessions are stored in DB
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_SAVE_EVERY_REQUEST = True
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-8ys*cx$j5_sjf462*3qk20bj7l)qcsm86&rq*ba!d(*apxq5=-'
 
@@ -139,5 +143,3 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 
 ]
-
-
