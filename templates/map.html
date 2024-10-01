@@ -105,7 +105,7 @@
         padding: 10px 15px;
         border: none;
         border-radius: 5px;
-        background-color: #007bff; /* Blue background */
+        background-color: black; /* Blue background */
         color: white; /* White text */
         cursor: pointer;
         font-size: 14px; /* Font size */
@@ -126,14 +126,21 @@
            right: 20px;
            display: flex;
            gap: 10px;
+           border: 2px;
+           border-radius: 5px; /* Rounded corners */
+
        }
        .user-controls a {
            padding: 5px 10px;
-           background-color: #007bff;
+           background-color: black;
            color: white;
            text-decoration: none;
            border-radius: 3px;
        }
+
+       .user-controls a:hover {
+         background-color: #4D1F1A; /* Darker shade for hover */
+}
        .user-greeting {
            position: absolute;
            top: 10px;
@@ -221,7 +228,7 @@
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; /* Primary color */
+    background-color: black; /* Primary color */
     color: white;
     cursor: pointer;
     font-size: 16px;
@@ -326,14 +333,14 @@ var infoWindow = new google.maps.InfoWindow({
 
         function searchRestaurants() {
             clearMarkers();
-        
+
             getUserLocation().then(userLocation => {
                 var form = document.getElementById('search-form');
                 var formData = new FormData(form);
-        
+
                 formData.append('user_lat', userLocation.lat);
                 formData.append('user_lng', userLocation.lng);
-        
+
                 fetch('/map/', {
                     method: 'POST',
                     body: formData,
@@ -425,19 +432,19 @@ var infoWindow = new google.maps.InfoWindow({
         function populateRestaurantCards(results) {
             const restaurantList = document.getElementById('restaurant-list');
             const template = document.getElementById('restaurant-card-template');
-        
+
             restaurantList.innerHTML = '';
-        
+
             results.forEach(place => {
                 const card = template.content.cloneNode(true);
                 const cardElement = card.querySelector('.restaurant-card');
-        
+
                 cardElement.setAttribute('data-place-id', place.place_id);
                 cardElement.querySelector('.restaurant-name').textContent = place.name;
                 cardElement.querySelector('.restaurant-rating').textContent = `${place.rating || 'N/A'} ★`;
                 cardElement.querySelector('.restaurant-address').textContent = place.vicinity || place.formatted_address || 'Address not available';
                 cardElement.querySelector('.restaurant-description').textContent = place.types ? place.types.join(', ') : 'No description available';
-        
+
                 const imgElement = cardElement.querySelector('img');
                 if (place.photos && place.photos.length > 0 && typeof place.photos[0].getUrl === 'function') {
                     imgElement.src = place.photos[0].getUrl();
@@ -448,16 +455,16 @@ var infoWindow = new google.maps.InfoWindow({
                 } else {
                     imgElement.src = 'https://via.placeholder.com/150?text=No+Image';
                 }
-        
+
                 cardElement.addEventListener('click', function() {
                     getPlaceDetails(place, function(placeDetails) {
                         showPopup(placeDetails);
                     });
                 });
-        
+
                 restaurantList.appendChild(cardElement);
             });
-        
+
             if (results.length === 0) {
                 restaurantList.innerHTML = '<p>No restaurants found.</p>';
             }

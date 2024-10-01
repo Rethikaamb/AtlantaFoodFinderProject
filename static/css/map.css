@@ -212,20 +212,20 @@ body, html {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: black;
     color: white;
     cursor: pointer;
 }
 
 .favorite-button button:hover {
-    background-color: #0056b3;
+    background-color: #4D1F1A;
 }
 
 .searching-button {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: black;
     color: white;
     cursor: pointer;
     margin-bottom: 15px;
@@ -263,14 +263,14 @@ body, html {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: black;
     color: white;
     cursor: pointer;
     margin-top: 10px; /* Space above the button */
 }
 
 .searching-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #4D1F1A; /* Darker shade on hover */
 }
 
 .searching-button:active {
