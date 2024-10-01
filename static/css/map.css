@@ -17,6 +17,45 @@ body, html {
     height: 100%;
 }
 
+
+
+.search-input:focus {
+    border-color: #007BFF; /* Change to your primary color */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional shadow */
+}
+.search-panel:hover {
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 500px) {
+    .search-panel {
+        width: 100%;
+        padding: 15px;
+    }
+}
+.search-button {
+    background-color: #007BFF; /* Change to your primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  /*    width: 100%;*/
+  /*border: 3px solid #00B4CC;*/
+  /*border-right: none;*/
+  /*padding: 5px;*/
+  /*height: 20px;*/
+  /*border-radius: 5px 0 0 5px;*/
+  /*outline: none;*/
+  /*color: #9DBFAF;*/
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Darker shade for hover */
+}
+
 /* Search panel styles */
 .search-panel {
     width: 400px;
@@ -181,3 +220,60 @@ body, html {
 .favorite-button button:hover {
     background-color: #0056b3;
 }
+
+.searching-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc; /* Border for the search bar */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Ensures the border radius is applied */
+}
+
+.search-input {
+    border: none; /* No border */
+    padding: 10px; /* Padding for input */
+    font-size: 16px; /* Font size */
+    flex: 1; /* Takes up available space */
+    outline: none; /* Removes outline on focus */
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Space between elements */
+    margin-bottom: 20px; /* Space below the entire search bar */
+}
+
+.search-label {
+    font-size: 16px; /* Adjust font size for the label */
+    margin-bottom: 5px; /* Space below the label */
+}
+
+.searching-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px; /* Space above the button */
+}
+
+.searching-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.searching-button:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
