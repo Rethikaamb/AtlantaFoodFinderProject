@@ -498,7 +498,7 @@ var infoWindow = new google.maps.InfoWindow({
                 cardElement.querySelector('.restaurant-name').textContent = place.name;
                 cardElement.querySelector('.restaurant-rating').textContent = `${place.rating || 'N/A'} ★`;
                 cardElement.querySelector('.restaurant-address').textContent = place.vicinity || place.formatted_address || 'Address not available';
-                cardElement.querySelector('.restaurant-description').textContent = place.types ? place.types.join(', ') : 'No description available';
+                //cardElement.querySelector('.restaurant-description').textContent = place.types ? place.types.join(', ') : 'No description available';
 
                 const imgElement = cardElement.querySelector('img');
                 if (place.photos && place.photos.length > 0 && typeof place.photos[0].getUrl === 'function') {
