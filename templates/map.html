@@ -301,6 +301,7 @@
        let infoWindow;
        let markers = [];
        let favorites = [];
+       let restaurantListDiv = null;
 
        function initMap() {
            var location = {lat: 33.7833, lng: -84.3831};
@@ -308,6 +309,7 @@
                zoom: 14,
                center: location
            });
+           restaurantListDiv = document.getElementById('restaurant-list');
 
            infoWindow = new google.maps.InfoWindow();
            service = new google.maps.places.PlacesService(map);
@@ -370,6 +372,7 @@ var infoWindow = new google.maps.InfoWindow({
        }
 
        function fetchNearbyRestaurants(location) {
+           //restaurantListDiv.innerHTML = '';
            clearMarkers();
            service.nearbySearch({
                location: location,
@@ -463,6 +466,47 @@ var infoWindow = new google.maps.InfoWindow({
            markers.forEach(marker => marker.setMap(null));
            markers = [];
        }
+       
+       function openReviewsPopup(placeId) {
+    const reviewsContainer = document.getElementById('reviews-container');
+
+    // Fetch place details, including reviews
+    service.getDetails({ placeId: placeId }, function (placeDetails, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            // Clear loading message
+            reviewsContainer.innerHTML = '';
+
+            if (placeDetails.reviews && placeDetails.reviews.length > 0) {
+                reviewsContainer.innerHTML += '<h3>Top Reviews:</h3>'; // Add heading for reviews
+
+                placeDetails.reviews.slice(0, 5).forEach(review => {
+                    const reviewElement = document.createElement('div');
+                    reviewElement.classList.add('review');
+                    reviewElement.innerHTML = `
+                        <p><strong>${review.author_name}</strong> (${review.rating} ★)</p>
+                        <p>${review.text}</p>
+                        <hr>
+                    `;
+                    reviewsContainer.appendChild(reviewElement);
+                });
+            } else {
+                reviewsContainer.innerHTML += '<p>No reviews available.</p>';
+            }
+        } else {
+            reviewsContainer.innerHTML += '<p>Error fetching reviews.</p>';
+        }
+    });
+}
+
+
+       
+// Close the reviews popup by removing it from the DOM.
+function closeReviewsPopup() {
+    const reviewsPopup = document.querySelector('.reviews-popup');
+    if (reviewsPopup) {
+        reviewsPopup.remove();
+    }
+}
 
     function getUserLocation() {
         return new Promise((resolve, reject) => {
@@ -572,27 +616,43 @@ var cuisine = "Unknown"
            
            name = place.name.replace("'", "&lsquo;");
            
-           popup.innerHTML = `
-               <span class="popup-close" onclick="closePopup()">×</span>
-               <div class="popup-content">
-                   <h2><u>${place.name}</u></h2>
-                   <div class="rating">
-                        <span>${place.rating ? place.rating.toFixed(1) : 'N/A'} / 5</span>
-                        <div class="stars">${starRating}</div> <!-- Stars displayed here -->
-                   </div>
-                   <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
-                   <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
-                   {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
-                   <p><strong>Cuisine:</strong> ${cuisine}</p
-                   <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
-                   <div class ="favorite-button">
-                       ${isFavorite ?
-                   `<button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>` :
-                   `<button onclick="addFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
-               }
-                    </div>
-               </div>
-           `;
+           
+    // Display restaurant details with a dedicated reviews button
+   popup.innerHTML = `
+    <span class="popup-close" onclick="closePopup()">×</span>
+    <div class="popup-content">
+        <h2><u>${place.name}</u></h2>
+        <div class="rating">
+            <span>${place.rating ? place.rating.toFixed(1) : 'N/A'} / 5</span>
+            <div class="stars">${starRating}</div>
+        </div>
+        <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
+        <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
+        <p><a href="${place.url}" target="_blank">View on Google Maps</a></p>
+
+        <!-- Button to fetch reviews -->
+        <button onclick="openReviewsPopup('${place.place_id}')">View Reviews</button>
+
+        <!-- Add to favorites button -->
+        <div class="favorite-button">
+            ${favorites.some(fav => fav.id === place.place_id) ?
+                `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
+                `<button onclick="addFavorite('${place.place_id}')">Add to Favorites</button>`
+            }
+        </div>
+
+        <!-- Container for reviews -->
+        <div class="reviews-container">
+            <h3>Reviews:</h3>
+            <div id="reviews-container">
+                <p>Loading reviews...</p>
+            </div>
+        </div>
+    </div>
+`;
+
+
+
            popup.style.display = 'block';
 
            // Add click event to the entire popup content
@@ -634,7 +694,7 @@ var cuisine = "Unknown"
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-
+       
        function generateStars(rating) {
             const totalStars = 5;
             let starsHTML = '';
