@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="Update Favorites backend Functionality">
-      <change beforePath="$PROJECT_DIR$/.idea/AtlantaFoodFinder.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AtlantaFoodFinder.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="Favorites now saves to each user!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
@@ -232,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727814325545</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Favorites now saves to each user!">
+      <option name="closed" value="true" />
+      <created>1727831439386</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1727831439386</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +257,8 @@
     <MESSAGE value="New Branch with backend favorite updates" />
     <MESSAGE value="Update Favorites Functionality" />
     <MESSAGE value="Update Favorites backend Functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Favorites backend Functionality" />
+    <MESSAGE value="Favorites now saves to each user!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Favorites now saves to each user!" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AtlantaFoodFinder$urls.coverage" NAME="urls Coverage Results" MODIFIED="1727204931902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AtlantaFoodFinder" />

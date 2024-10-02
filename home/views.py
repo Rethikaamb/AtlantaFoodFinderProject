@@ -407,23 +407,10 @@ def remove_favorite(request, restaurantID):
         user = request.user
         restaurant_id = request.data.get('restaurant_id')
 
-        # # Print debug information
-        # print("Authenticated user:", user)
-        # print("Received restaurantID:", restaurantID)
-        # favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
-        #print("userinfo: " + str(Favorite.objects.filter(user=user)))
-
-        # favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
-        # print(list(favorite))
-
         try:
             # Try to find the favorite entry for the user
             favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
-            print(list(favorite))
             favorite.delete()
-
-            # Print the favorite entry details before deletion
-            # print(f"Favorite found: ID={favorite.restaurantID}, Name={favorite.place_name}")
 
             print(f"Favorite with restaurantID: {restaurantID} has been removed.")
             print("userinfo: " + str(Favorite.objects.filter(user=user)))
@@ -454,44 +441,42 @@ def list_favorites(request):
     return JsonResponse({'error': 'Authentication required'}, status=401)
 
 
-# Get only the favorite restaurants for the logged-in user
-@api_view(['GET'])
-def get_favorite_restaurants(request):
-    if request.user.is_authenticated:
-        user = request.user
-        favorite_restaurants = Favorite.objects.filter(user=user).values_list('restaurant', flat=True)
-        restaurants = Restaurant.objects.filter(id__in=favorite_restaurants)
-        serializer = RestaurantSerializer(restaurants, many=True)
-        return Response(serializer.data)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
-
-@api_view(['POST'])
-def save_restaurant(request):
-    if request.method == 'POST':
-        serializer = RestaurantSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+# # Get only the favorite restaurants for the logged-in user
+# @api_view(['GET'])
+# def get_favorite_restaurants(request):
+#     if request.user.is_authenticated:
+#         user = request.user
+#         favorite_restaurants = Favorite.objects.filter(user=user).values_list('restaurant', flat=True)
+#         restaurants = Restaurant.objects.filter(id__in=favorite_restaurants)
+#         serializer = RestaurantSerializer(restaurants, many=True)
+#         return Response(serializer.data)
+#     else:
+#         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+#
+# @api_view(['POST'])
+# def save_restaurant(request):
+#     if request.method == 'POST':
+#         serializer = RestaurantSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def account(request):
-    if request.user.is_authenticated:
-        favorites = Favorite.objects.filter(user=request.user)
-    else:
-        favorites = []
-
-    return render(request, "account.html", {"favorites": favorites})
-    if request.user.is_authenticated:
-        user = request.user
-        restaurant_id = request.data.get('restaurant_id')
-        place_name = request.data.get('restaurant_name')
-        Favorite.objects.create(user=user, restaurantID=restaurant_id, place_name=place_name)
-        print("userinfo: " + str(Favorite.objects.filter(user=user)))
-    return JsonResponse({'success': True})
+# def account(request):
+#     if request.user.is_authenticated:
+#         favorites = Favorite.objects.filter(user=request.user)
+#     else:
+#         favorites = []
+#
+#     return render(request, "account.html", {"favorites": favorites})
+#     if request.user.is_authenticated:
+#         user = request.user
+#         restaurant_id = request.data.get('restaurant_id')
+#         place_name = request.data.get('restaurant_name')
+#         Favorite.objects.create(user=user, restaurantID=restaurant_id, place_name=place_name)
+#         print("userinfo: " + str(Favorite.objects.filter(user=user)))
+#     return JsonResponse({'success': True})
 
 # Remove a restaurant from favorites
 # @api_view(['DELETE'])
@@ -508,25 +493,25 @@ def account(request):
 #         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
 
 # Get only the favorite restaurants for the logged-in user
-@api_view(['GET'])
-def get_favorite_restaurants(request):
-    if request.user.is_authenticated:
-        user = request.user
-        favorite_restaurants = Favorite.objects.filter(user=user).values_list('restaurant', flat=True)
-        restaurants = Restaurant.objects.filter(id__in=favorite_restaurants)
-        serializer = RestaurantSerializer(restaurants, many=True)
-        return Response(serializer.data)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
-
-@api_view(['POST'])
-def save_restaurant(request):
-    if request.method == 'POST':
-        serializer = RestaurantSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# @api_view(['GET'])
+# def get_favorite_restaurants(request):
+#     if request.user.is_authenticated:
+#         user = request.user
+#         favorite_restaurants = Favorite.objects.filter(user=user).values_list('restaurant', flat=True)
+#         restaurants = Restaurant.objects.filter(id__in=favorite_restaurants)
+#         serializer = RestaurantSerializer(restaurants, many=True)
+#         return Response(serializer.data)
+#     else:
+#         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+#
+# @api_view(['POST'])
+# def save_restaurant(request):
+#     if request.method == 'POST':
+#         serializer = RestaurantSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

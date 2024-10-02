@@ -373,7 +373,7 @@ var infoWindow = new google.maps.InfoWindow({
            clearMarkers();
            service.nearbySearch({
                location: location,
-               radius: 1500,
+               radius: 5000, // 5 km
                type: ['restaurant']
            }, function(results, status) {
                if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -554,9 +554,6 @@ var infoWindow = new google.maps.InfoWindow({
                    {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
                    <p><strong>Cuisine:</strong> ${place.types ? place.types.join(', ') : 'N/A'}</p>
                    <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
-                   <div class = "remove-button">
-                        <button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>
-                   </div>
                    <div class ="favorite-button">
                        ${isFavorite ?
                    `<button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>` :
@@ -625,22 +622,21 @@ var infoWindow = new google.maps.InfoWindow({
                favorites.push({ id: restaurantId, name: restaurantName });
                updateFavoritesUI();
            }
-
            fetch('/api/favorites/add/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCookie('csrftoken')  // Ensure this is correctly retrieved
-    },
-    body: JSON.stringify({ restaurant_id: restaurantId, restaurant_name: restaurantName, restaurant_address: restaurantAddress, restaurant_latitude : restaurantLatitude, restaurant_longitude : restaurantLongitude })
-})
-           .then(response => response.json())
-           .then(data => {
-               console.log(data.message);
+               method: 'POST', 
+               headers: {
+                   'Content-Type': 'application/json', 
+                   'X-CSRFToken': getCookie('csrftoken')  // Ensure this is correctly retrieved
+                   }, 
+               body: JSON.stringify({ restaurant_id: restaurantId, restaurant_name: restaurantName, restaurant_address: restaurantAddress, restaurant_latitude : restaurantLatitude, restaurant_longitude : restaurantLongitude })
            })
-           .catch(error => {
-               console.error('Error adding favorite:', error);
-           });
+               .then(response => response.json())
+               .then(data => {
+                   console.log(data.message);
+               })
+               .catch(error => {
+                   console.error('Error adding favorite:', error);
+               });
        }
 
        function removeFavorite(restaurantId) {
@@ -713,23 +709,6 @@ function updateFavoritesUI() {
         favoritesContainer.appendChild(listItem);
     });
 }
-
-
-
-       {#function updateFavoritesUI() {#}
-       {#    const favoritesContainer = document.getElementById('favorites');#}
-       {#    favoritesContainer.innerHTML = '';#}
-       {##}
-       {#    if (favorites.length === 0) {#}
-       {#        favoritesContainer.innerHTML = '<li>No favorites added.</li>';#}
-       {#        return;#}
-       {#    }#}
-       {##}
-       {#    favorites.forEach(fav => {#}
-       {#        const listItem = document.createElement('li');#}
-       {#        listItem.textContent = fav.name;#}
-       {#        favoritesContainer.appendChild(listItem);#}
-       {#    });#}
 
    </script>
 </body>
