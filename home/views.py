@@ -277,9 +277,6 @@ def signup(request):
             user.email = email
 
             user.save()
-            emptyarray = []
-            fav = Favorite.objects.create(username=user.username, favorites=emptyarray)
-            fav.save()
 
             messages.success(request, "Account successfully created")
 
@@ -399,28 +396,62 @@ def add_favorite(request):
         user = request.user
         restaurant_id = request.data.get('restaurant_id')
         place_name = request.data.get('restaurant_name')
-        Favorite.objects.create(user=user, restaurantID=restaurant_id, place_name=place_name)
+        Favorite.objects.get_or_create(user=user, restaurantID=restaurant_id, place_name=place_name)
         print("userinfo: " + str(Favorite.objects.filter(user=user)))
     return JsonResponse({'success': True})
 
 # Remove a restaurant from favorites
 @api_view(['DELETE'])
-def remove_favorite(request, restaurant_id):
+def remove_favorite(request, restaurantID):
     if request.user.is_authenticated:
         user = request.user
+        restaurant_id = request.data.get('restaurant_id')
+
+        # # Print debug information
+        # print("Authenticated user:", user)
+        # print("Received restaurantID:", restaurantID)
+        # favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
+        #print("userinfo: " + str(Favorite.objects.filter(user=user)))
+
+        # favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
+        # print(list(favorite))
+
         try:
-            favorite = Favorite.objects.get(user=user, restaurant_id=restaurant_id)
+            # Try to find the favorite entry for the user
+            favorite = Favorite.objects.filter(user=user, restaurantID=restaurantID)
+            print(list(favorite))
             favorite.delete()
-            return Response({"message": "Favorite removed"}, status=status.HTTP_200_OK)
+
+            # Print the favorite entry details before deletion
+            # print(f"Favorite found: ID={favorite.restaurantID}, Name={favorite.place_name}")
+
+            print(f"Favorite with restaurantID: {restaurantID} has been removed.")
+            print("userinfo: " + str(Favorite.objects.filter(user=user)))
+            return JsonResponse({'success': True, 'message': 'Favorite removed successfully.'})
+
         except Favorite.DoesNotExist:
-            return Response({"error": "Favorite does not exist"}, status=status.HTTP_404_NOT_FOUND)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+            # If the favorite doesn't exist
+            return JsonResponse({'success': False, 'message': 'Favorite not found.'})
+
+    return JsonResponse({'success': False, 'message': 'User not authenticated.'})
+
+
 
 # List all favorite restaurants for the logged-in user
 @api_view(['GET'])
 def list_favorites(request):
-    return Response({"error": "Authentication required"}, status=401)
+    if request.user.is_authenticated:
+        user = request.user
+        favorites = Favorite.objects.filter(user=user)
+        favorites_list = [
+            {
+                'restaurant_id': fav.restaurantID,
+                'restaurant_name': fav.place_name,
+            }
+            for fav in favorites
+        ]
+        return JsonResponse(favorites_list, safe=False)
+    return JsonResponse({'error': 'Authentication required'}, status=401)
 
 
 # Get only the favorite restaurants for the logged-in user
@@ -463,24 +494,18 @@ def account(request):
     return JsonResponse({'success': True})
 
 # Remove a restaurant from favorites
-@api_view(['DELETE'])
-def remove_favorite(request, restaurant_id):
-    if request.user.is_authenticated:
-        user = request.user
-        try:
-            favorite = Favorite.objects.get(user=user, restaurant_id=restaurant_id)
-            favorite.delete()
-            return Response({"message": "Favorite removed"}, status=status.HTTP_200_OK)
-        except Favorite.DoesNotExist:
-            return Response({"error": "Favorite does not exist"}, status=status.HTTP_404_NOT_FOUND)
-    else:
-        return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
-
-# List all favorite restaurants for the logged-in user
-@api_view(['GET'])
-def list_favorites(request):
-    return Response({"error": "Authentication required"}, status=401)
-
+# @api_view(['DELETE'])
+# def remove_favorite(request, restaurant_id):
+#     if request.user.is_authenticated:
+#         user = request.user
+#         try:
+#             favorite = Favorite.objects.get(user=user, restaurant_id=restaurant_id)
+#             favorite.delete()
+#             return Response({"message": "Favorite removed"}, status=status.HTTP_200_OK)
+#         except Favorite.DoesNotExist:
+#             return Response({"error": "Favorite does not exist"}, status=status.HTTP_404_NOT_FOUND)
+#     else:
+#         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
 
 # Get only the favorite restaurants for the logged-in user
 @api_view(['GET'])

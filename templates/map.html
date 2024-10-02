@@ -554,9 +554,12 @@ var infoWindow = new google.maps.InfoWindow({
                    {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
                    <p><strong>Cuisine:</strong> ${place.types ? place.types.join(', ') : 'N/A'}</p>
                    <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
+                   <div class = "remove-button">
+                        <button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>
+                   </div>
                    <div class ="favorite-button">
                        ${isFavorite ?
-                   `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
+                   `<button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>` :
                    `<button onclick="addFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
                }
                     </div>
@@ -621,7 +624,6 @@ var infoWindow = new google.maps.InfoWindow({
            if (!favorites.some(fav => fav.id === restaurantId)) {
                favorites.push({ id: restaurantId, name: restaurantName });
                updateFavoritesUI();
-               saveFavorites();
            }
 
            fetch('/api/favorites/add/', {
@@ -644,8 +646,7 @@ var infoWindow = new google.maps.InfoWindow({
        function removeFavorite(restaurantId) {
            favorites = favorites.filter(fav => fav.id !== restaurantId);
            updateFavoritesUI();
-           saveFavorites();
-
+            
            fetch(`/api/favorites/remove/${restaurantId}/`, {
                method: 'DELETE',
                headers: {
@@ -660,33 +661,33 @@ var infoWindow = new google.maps.InfoWindow({
                console.error('Error removing favorite:', error);
            });
        }
-
-       function saveFavorites() {
-           localStorage.setItem('favorites', JSON.stringify(favorites));
-       }
+       
 
        function loadFavorites() {
-    fetch('/api/favorites/list/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCookie('csrftoken')
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Fetched favorites:', data);  // Log the data fetched from the server
-        favorites = data.map(fav => ({ id: fav.restaurant.id, name: fav.restaurant.name }));
-        console.log('Parsed favorites:', favorites);  // Log parsed favorites list
-        updateFavoritesUI();
-    })
-    .catch(error => {
-        console.error('Error loading favorites:', error);
-    });
+           fetch('/api/favorites/list/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Assuming data contains an array of favorite objects with restaurant_id and restaurant_name
+            favorites = data.map(fav => ({
+                id: fav.restaurant_id,
+                name: fav.restaurant_name,
+            }));
+            console.log(favorites + ": favorites")
+            updateFavoritesUI();
+        })
+        .catch(error => {
+            console.error('Error loading favorites:', error);
+        });
 }
-       function updateFavoritesUI() {
+
+function updateFavoritesUI() {
     const favoritesContainer = document.getElementById('favorites');
-    favoritesContainer.innerHTML = '';
+    favoritesContainer.innerHTML = '';  // Clear existing favorites
 
     if (favorites.length === 0) {
         favoritesContainer.innerHTML = '<li>No favorites added.</li>';
@@ -694,34 +695,25 @@ var infoWindow = new google.maps.InfoWindow({
     }
 
     favorites.forEach(fav => {
-        // Fetch place details for each favorite
-        service.getDetails({ placeId: fav.id }, function(placeDetails, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                const listItem = document.createElement('li');
-                listItem.className = 'favorite-card';
+        const listItem = document.createElement('li');
+        listItem.className = 'favorite-card';
 
-                const img = document.createElement('img');
-                img.className = 'favorite-image';
-                img.src = placeDetails.photos && placeDetails.photos.length > 0 ? placeDetails.photos[0].getUrl() : '/api/placeholder/80/80';
+        const name = document.createElement('span');
+        name.className = 'favorite-name';
+        name.textContent = fav.name;
 
-                const name = document.createElement('span');
-                name.className = 'favorite-name';
-                name.textContent = placeDetails.name; // Use place name from details
+        const removeButton = document.createElement('span');
+        removeButton.className = 'favorite-remove';
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeFavorite(fav.id);  // Link to the remove function
 
-                const removeButton = document.createElement('span');
-                removeButton.className = 'favorite-remove';
-                removeButton.textContent = 'Remove';
-                removeButton.onclick = () => removeFavorite(fav.id);
+        listItem.appendChild(name);
+        listItem.appendChild(removeButton);
 
-                listItem.appendChild(img);
-                listItem.appendChild(name);
-                listItem.appendChild(removeButton);
-
-                favoritesContainer.appendChild(listItem);
-            }
-        });
+        favoritesContainer.appendChild(listItem);
     });
 }
+
 
 
        {#function updateFavoritesUI() {#}
