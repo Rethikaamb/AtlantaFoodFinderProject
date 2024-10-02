@@ -535,11 +535,42 @@ var infoWindow = new google.maps.InfoWindow({
        
        function showPopup(place) {
            loadFavorites();
+           const italian = ["ChIJX973788F9YgR0EDNzkfhmRY","ChIJg0330TQF9YgRGzpKxX21dQg", "ChIJD8nPll4F9YgRljdGdCq69Io", "ChIJaU_5DHoE9YgRZ6C9Mxbyftk", "ChIJVVVFN44E9YgRe-aC1CC_NAw", "ChIJi-A6w5UF9YgRUQXQ2AOpkj8", "ChIJAensEPgD9YgR8IPvfkTENUM"]
+           const chinese = ["ChIJBWTGEHgE9YgRsxHzq3LxxzQ", "ChIJ1Vn8rKoF9YgRB88SbQBbbMM", "ChIJvZaDr3YF9YgRXzVzIFDAvdk", "ChIJZceakjME9YgRyZwdxYPM6uM", "ChIJwWNQxHEE9YgRCjuVoqKbVhU", " ChIJv6Bz0vIE9YgR_oFjB1vJ3r0", "ChIJnaLavCAF9YgRPHNKDesn_68", "ChIJq-YA7RAE9YgRRqqCgSJCsG0"]
+           const american = ["ChIJWWUM7mQE9YgRuP3jMWQO-uI", "ChIJQ-icamgE9YgR5x6mB7gMOR0", "ChIJgUolJWwE9YgRnxg5IduXOsg", "ChIJd1yZdewE9YgReD9t-jO662U", "ChIJpwdZ0AcE9YgR4Y8mHDdrygo", "ChIJV1QMS-sE9YgR0bCLgwLEWhY", "ChIJvQqtX0ME9YgR-X6ukvNSt6I", "ChIJNwFLfVsE9YgRrkOBaigMzhI", "ChIJh2rE12cE9YgRUvRZSZmo4h4"]
+           const mexican = ["ChIJ_3B7nUIE9YgRvJ3CWb9asWo", "ChIJSd4kc3gE9YgRq6HkvZcW-cw", "ChIJyWNE-mgE9YgR1thAVNnhDpc", "ChIJNaeX0RAE9YgRyROTgp93Rbk", "ChIJPZ--sdoE9YgRLp5GjVlehNs", "ChIJZyjICBYE9YgRE9cpHUNmN0Q", "ChIJU_XZ8QIF9YgRDECdtrHYoTQ", "ChIJ2aXXdscF9YgRhZBjvJsyews", "ChIJCztBntwF9YgRaraSa1SOtus", "ChIJA8WxaA8F9YgRYjlJmZJTJf8", "ChIJM0Z60uoF9YgR9J-9ylERcAk", "ChIJAfuXyMUE9YgRBM9FUaVQyuw"]
+           const indian = ["ChIJoRRnZgAF9YgR8qi2rD-oyN8", "ChIJLaLUe2ID9YgR3BZgYMNttzQ", "ChIJd8OzDgAF9YgRz7RmEEXSnn8", "ChIJr2ntQ0wD9YgRzLlzJ-PDtPs", "ChIJy2govhAE9YgRyqfK_NJPaQQ"]
+           const pub_bar = ["ChIJm8uX1X8E9YgR2Acbx-2xMZ4", "ChIJweczQWYE9YgRvtwgBTj9cUU", "ChIJ6V-08HkE9YgRvZopWFm3U4w", "ChIJx74fE3AE9YgRoxMa6Sh7FVQ", "ChIJw23jdm8E9YgRn1HODnsUFxE"]
+           const european = ["ChIJlyVS2WcE9YgR2EM86Kf9aRY"]
+           const cuisines = [italian, chinese, american, mexican, indian, pub_bar, european]
+           const cuisine_names = ["Italian", "Chinese", "American", "Mexican", "Indian", "Bar/Pub", "European"]
+           const fast_food = ["McDonald's", "Panda Express", "Papa Johns Pizza", "Chick-fil-A", "Subway"]
+var cuisine = "Unknown"
+           var found = false
+           for (let i = 0; i < cuisines.length; i++) {
+                for (let j = 0; j < cuisines[i].length; j++) {
+                    if (cuisines[i][j] === String(place.place_id)) {
+                        cuisine = cuisine_names[i];
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    break;
+                }
+            }
+           if (!found) {
+               for (let i = 0; i < cuisines.length; i++) {
+                   if (fast_food[i] === String(place.name)) {
+                       cuisine = "Fast Food"
+                   }
+               }
+           }
            const popup = document.getElementById('popup');
            const isFavorite = favorites.some(fav => fav.id === place.place_id);
            const starRating = generateStars(place.rating);
            
-           name = place.name.replace("'", "&lsquo,");
+           name = place.name.replace("'", "&lsquo;");
            
            popup.innerHTML = `
                <span class="popup-close" onclick="closePopup()">×</span>
@@ -552,7 +583,7 @@ var infoWindow = new google.maps.InfoWindow({
                    <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
                    <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
                    {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
-                   <p><strong>Cuisine:</strong> ${place.types ? place.types.join(', ') : 'N/A'}</p>
+                   <p><strong>Cuisine:</strong> ${cuisine}</p
                    <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
                    <div class ="favorite-button">
                        ${isFavorite ?
