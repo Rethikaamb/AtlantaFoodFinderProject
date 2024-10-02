@@ -138,7 +138,7 @@ def map_view(request):
             user_lng = float(request.POST.get('user_lng'))
 
             api_key = settings.GOOGLE_MAPS_API_KEY
-            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location={user_lat},{user_lng}&radius={distance_filter}&key={api_key}"
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&type=restaurant&location={user_lat},{user_lng}&radius={distance_filter}&key={api_key}"
             response = requests.get(url)
             results = response.json().get('results', [])
 
@@ -333,7 +333,7 @@ def map_view(request):
             user_lng = float(request.POST.get('user_lng'))
 
             api_key = settings.GOOGLE_MAPS_API_KEY
-            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&location={user_lat},{user_lng}&radius={distance_filter}&key={api_key}"
+            url = f"https://maps.googleapis.com/maps/api/place/textsearch/json?query={query}&type=restaurant&location={user_lat},{user_lng}&radius={distance_filter}&key={api_key}"
             response = requests.get(url)
             results = response.json().get('results', [])
 
