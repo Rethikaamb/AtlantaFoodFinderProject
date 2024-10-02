@@ -100,6 +100,21 @@
             margin-top: 15px;
             text-align: center;
         }
+        
+        .review-button button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: black; /* Blue background */
+            color: white; /* White text */
+            cursor: pointer;
+            font-size: 14px; /* Font size */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        
+        .review-button button:hover {
+            background-color: #4D1F1A; /* Darker red on hover */
+        }
 
     .favorite-button button {
         padding: 10px 15px;
@@ -239,6 +254,32 @@
 .btn-search:hover {
     background-color: #0056b3; /* Darker shade for hover */
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F0E7D7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 400px;
+    width: 80%;
+    max-height: 80vh; /* Limits the height of the popup to 80% of the viewport height */
+    overflow-y: auto; /* Enables vertical scrolling if content exceeds max height */
+}
+
+.review {
+    margin-bottom: 10px;
+}
+
+.review hr {
+    margin: 10px 0;
+}
+
    </style>
 
    
@@ -301,6 +342,7 @@
        let infoWindow;
        let markers = [];
        let favorites = [];
+       let restaurantListDiv = null;
 
        function initMap() {
            var location = {lat: 33.7833, lng: -84.3831};
@@ -308,6 +350,7 @@
                zoom: 14,
                center: location
            });
+           restaurantListDiv = document.getElementById('restaurant-list');
 
            infoWindow = new google.maps.InfoWindow();
            service = new google.maps.places.PlacesService(map);
@@ -370,6 +413,7 @@ var infoWindow = new google.maps.InfoWindow({
        }
 
        function fetchNearbyRestaurants(location) {
+           //restaurantListDiv.innerHTML = '';
            clearMarkers();
            service.nearbySearch({
                location: location,
@@ -463,6 +507,8 @@ var infoWindow = new google.maps.InfoWindow({
            markers.forEach(marker => marker.setMap(null));
            markers = [];
        }
+       
+       
 
     function getUserLocation() {
         return new Promise((resolve, reject) => {
@@ -572,27 +618,37 @@ var cuisine = "Unknown"
            
            name = place.name.replace("'", "&lsquo;");
            
-           popup.innerHTML = `
-               <span class="popup-close" onclick="closePopup()">×</span>
-               <div class="popup-content">
-                   <h2><u>${place.name}</u></h2>
-                   <div class="rating">
-                        <span>${place.rating ? place.rating.toFixed(1) : 'N/A'} / 5</span>
-                        <div class="stars">${starRating}</div> <!-- Stars displayed here -->
-                   </div>
-                   <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
-                   <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
-                   {#<p><strong>Rating:</strong> ${place.rating || 'N/A'} / 5</p>#}
-                   <p><strong>Cuisine:</strong> ${cuisine}</p
-                   <p"><a href="${place.url}" target="_blank">View on Google Maps</a></p>
-                   <div class ="favorite-button">
-                       ${isFavorite ?
-                   `<button onclick="removeFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Remove from Favorites</button>` :
-                   `<button onclick="addFavorite('${place.place_id}', '${name}', '${place.address}', '12', '${place.longitude}', '${place.rating}', '${place.type}')">Add to Favorites</button>`
-               }
-                    </div>
-               </div>
-           `;
+           
+    // Display restaurant details with a dedicated reviews button
+   popup.innerHTML = `
+    <span class="popup-close" onclick="closePopup()">×</span>
+    <div class="popup-content">
+        <h2><u>${place.name}</u></h2>
+        <div class="rating">
+            <span>${place.rating ? place.rating.toFixed(1) : 'N/A'} / 5</span>
+            <div class="stars">${starRating}</div>
+        </div>
+        <p><strong>Address:</strong> ${place.formatted_address || 'No address available'}</p>
+        <p><strong>Phone:</strong> ${place.formatted_phone_number || 'No phone number available'}</p>
+        <p><a href="${place.url}" target="_blank">View on Google Maps</a></p>
+
+        <!-- Button to fetch reviews -->
+        <div class="review-button">
+        <button onclick="fetchAndDisplayReviews('${place.place_id}')">View Reviews</button>
+        </div>
+
+        <!-- Add to favorites button -->
+        <div class="favorite-button">
+            ${favorites.some(fav => fav.id === place.place_id) ?
+                `<button onclick="removeFavorite('${place.place_id}')">Remove from Favorites</button>` :
+                `<button onclick="addFavorite('${place.place_id}')">Add to Favorites</button>`
+            }
+        </div>
+    </div>
+`;
+
+
+
            popup.style.display = 'block';
 
            // Add click event to the entire popup content
@@ -634,7 +690,7 @@ var cuisine = "Unknown"
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-
+       
        function generateStars(rating) {
             const totalStars = 5;
             let starsHTML = '';
@@ -647,6 +703,53 @@ var cuisine = "Unknown"
 
             return starsHTML;
         }
+        
+       function fetchAndDisplayReviews(placeId) {
+    // Create a new popup for reviews
+    const reviewsPopup = document.createElement('div');
+    reviewsPopup.className = 'popup';
+    reviewsPopup.innerHTML = `
+        <span class="popup-close" onclick="this.parentElement.remove()">×</span>
+        <div class="popup-content" id="reviews-content">
+            <p>Loading reviews...</p>
+        </div>
+    `;
+    document.body.appendChild(reviewsPopup);
+
+    // Show the popup (Ensure it's displayed)
+    reviewsPopup.style.display = 'block';
+
+    // Fetch reviews from Google Places API
+    service.getDetails({
+        placeId: placeId,
+        fields: ['name', 'rating', 'reviews']
+    }, function(details, status) {
+        const reviewsContent = document.getElementById('reviews-content');
+
+        if (status === google.maps.places.PlacesServiceStatus.OK && details.reviews) {
+            let reviewsHTML = `<h3>Reviews for ${details.name}</h3>`;
+
+            details.reviews.forEach(review => {
+                const date = new Date(review.time * 1000);
+                const formattedDate = date.toLocaleString();
+                reviewsHTML += `
+                    <div class="review">
+                        <strong>${review.author_name}</strong>: ${review.rating} ★
+                        <p>${review.text}</p>
+                        <small>Posted on: ${formattedDate}</small>
+                        <hr>
+                    </div>
+                `;
+            });
+
+            reviewsContent.innerHTML = reviewsHTML;
+        } else {
+            reviewsContent.innerHTML = '<p>No reviews available.</p>';
+        }
+    });
+}
+
+
 
        function addFavorite(restaurantId, restaurantName, restaurantAddress, restaurantLatitude, restaurantLongitude, restaurantRating, restaurantType) {
            if (!favorites.some(fav => fav.id === restaurantId)) {

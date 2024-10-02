@@ -7,6 +7,7 @@
     <list default="true" id="844c47e7-9b70-4dee-aadc-b32db8d92583" name="Changes" comment="Favorites now saves to each user!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/map.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/map.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +60,8 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "rethika2",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "rethika3",
     "last_opened_file_path": "C:/Users/lucym/Desktop/2340Projects/project1/AtlantaFoodFinderProject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
